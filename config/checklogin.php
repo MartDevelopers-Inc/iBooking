@@ -1,7 +1,5 @@
 <?php
 /*
- *
- *
  * martdevelopers254@gmail.com
  *
  *
@@ -56,13 +54,13 @@
  * IN NO EVENT WILL MartDevelopers Inc  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
-function check_login()
+function admin_check_login()
 {
-	if ((strlen($_SESSION['login_id']) == 0) || (strlen($_SESSION['login_rank']) == 0)) {
+	if ((strlen($_SESSION['login_admin_id']) == 0) || (strlen($_SESSION['login_rank']) == 0)) {
 		$host = $_SERVER['HTTP_HOST'];
 		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 		$extra = "login";
-		$_SESSION["login_id"] = "";
+		$_SESSION["login_admin_id"] = "";
 		$_SESSION["login_rank"] = "";
 		//$_SESSION["name"] = "";
 		header("Location: http://$host$uri/$extra");

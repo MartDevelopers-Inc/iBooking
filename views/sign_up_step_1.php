@@ -81,10 +81,10 @@ require_once('../partials/head.php');
                                 </svg>
                             </div>
                         </div>
-                        <h4 class="mt-0 mb-3">Welcome to iBooking</h4>
+                        <h4 class="mt-0 mb-3">Welcome to iBooking</h4><br>
                         <div class="row mb-3">
                             <div class="col-10 mx-auto">
-                                <p class="small-font text-secondary">Join iBooking As:</p>
+                                <p class="small-font text-secondary">We are so glad to have you onboard, kindly select how you want to join this platform as.</p>
                             </div>
                         </div>
                     </div>
