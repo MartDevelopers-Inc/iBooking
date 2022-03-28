@@ -100,11 +100,12 @@ require_once('../partials/head.php');
                         <input type="email" required name="login_email" class="form-control floating-input">
                         <label class="floating-label">Email Address</label>
                     </div>
+                    <br>
                     <div class="form-group my-4">
                         <a href="landing" class="link">Remember Password?</a>
                     </div>
                     <br><br>
-                    <input type="submit" name="reset_password" value="Reset Password" class="btn btn-block btn-info btn-lg">
+                    <input type="submit" name="Reset_Password" value="Reset Password" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>
         </div>
