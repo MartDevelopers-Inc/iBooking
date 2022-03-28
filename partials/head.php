@@ -28,7 +28,15 @@
 
     <!-- Swiper CSS -->
     <link href="../public/vendor/swiper/css/swiper.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="../public/css/style.css" rel="stylesheet" id="style">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../public/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <?php
+    /* Alert Sesion Via Alerts */
+    if (isset($_SESSION['success'])) {
+        $success = $_SESSION['success'];
+        unset($_SESSION['success']);
+    }
+    ?>
 </head>

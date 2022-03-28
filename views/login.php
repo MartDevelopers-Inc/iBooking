@@ -116,11 +116,11 @@ require_once('../partials/head.php');
             <div class="login-box">
                 <form method="POST">
                     <div class="form-group floating-form-group">
-                        <input type="email" required name="login_email" class="form-control floating-input">
+                        <input type="email" required name="email" class="form-control floating-input">
                         <label class="floating-label">Email Address</label>
                     </div>
                     <div class="form-group floating-form-group">
-                        <input type="password" required name="login_password" class="form-control floating-input" autofocus>
+                        <input type="password" required name="password" class="form-control floating-input" autofocus>
                         <label class="floating-label">Password</label>
                     </div>
                     <br>
