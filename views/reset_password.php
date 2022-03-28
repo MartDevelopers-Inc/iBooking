@@ -74,6 +74,7 @@ require_once('../partials/head.php');
             </div>
             <h4 class="mb-4">iBooking <br> <small>The Ultimate Hotel Booking System</small></h4>
         </div>
+        <br><br>
         <div class="container">
             <div class="login-box">
                 <form method="POST">
@@ -81,32 +82,15 @@ require_once('../partials/head.php');
                         <input type="email" required name="login_email" class="form-control floating-input">
                         <label class="floating-label">Email Address</label>
                     </div>
-                    <div class="form-group floating-form-group">
-                        <input type="password" required name="login_password" class="form-control floating-input" autofocus>
-                        <label class="floating-label">Password</label>
-                    </div>
-                    <br>
                     <div class="form-group my-4">
-                        <a href="reset_password" class="link">Forget password?</a>
+                        <a href="login" class="link">Remember Password?</a>
                     </div>
                     <br><br>
-                    <input type="submit" name="login" value="Sign In" class="btn btn-block btn-info btn-lg">
+                    <input type="submit" name="reset_password" value="Reset Password" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>
         </div>
     </main>
-
-    <footer class="footer mt-auto">
-        <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <a href="sign_up_step_1" class="link">Create Account</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
     <?php require_once('../partials/scripts.php'); ?>
 </body>
 
