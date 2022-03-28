@@ -67,7 +67,7 @@ if (isset($_POST['login'])) {
     $stmt->bind_param('ss', $email, $password);
     $stmt->execute(); //execute bind
 
-    $stmt->bind_result($email, $password, $login_rank, $login_user_id, $login_host_id);
+    $stmt->bind_result($email, $password, $login_rank, $login_host_id);
     $rs = $stmt->fetch();
     $_SESSION['login_host_id'] = $login_host_id;
     $_SESSION['login_rank'] = $login_rank;
