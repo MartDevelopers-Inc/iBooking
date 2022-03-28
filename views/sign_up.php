@@ -56,42 +56,58 @@
  */
 session_start();
 require_once('../config/config.php');
+require_once('../config/codeGen.php');
 
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = sha1(md5($_POST['password']));
+if (isset($_POST['sign_up'])) {
+    $host_id = $sys_gen_id_alt_1;
+    $host_email  = $_POST['host_email'];
+    $host_name = $_POST['host_name'];
+    $host_phone_no = $_POST['host_phone_no'];
+    $host_address = $_POST['host_address'];
+    /* Login Attributes */
+    $login_id = $sys_gen_id;
+    $login_rank = $_GET['user'];
+    $login_password = sha1(md5($_POST['login_password']));
 
-    $stmt = $mysqli->prepare("SELECT login_email, login_password, login_rank, login_user_id, login_admin_id, login_host_id FROM login l 
-    INNER JOIN admin a ON l.login_admin_id = a.admin_id
-    INNER JOIN user u ON u.user_id = l.login_user_id
-    INNER JOIN host h ON h.host_id = l.login_host_id
-    WHERE login_email =? AND login_password =?");
-    $stmt->bind_param('ss', $email, $password);
-    $stmt->execute(); //execute bind
+    /* Persist */
 
-    $stmt->bind_result($email, $password, $login_rank, $login_user_id, $login_admin_id, $login_host_id);
-    $rs = $stmt->fetch();
-    $_SESSION['login_user_id'] = $login_user_id;
-    $_SESSION['login_admin_id'] = $login_admin_id;
-    $_SESSION['login_rank'] = $login_rank;
+    $sql = "INSERT INTO hosts(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
+    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
 
-    /* Decide Login User Dashboard Based On User Rank */
-    if ($rs && $login_rank == 'Administrator') {
-        $_SESSION['success'] = 'You Have Successfully Logged In As Administrator';
-        header("location:home");
-        exit;
-    } else if ($rs && $login_rank == 'Host') {
-        $_SESSION['success'] = 'You Have Successfully Logged In As Host';
-        header("location:host_home");
-        exit;
-    } else if ($rs && $login_rank == 'User') {
-        $_SESSION['success'] = 'You Have Successfully Logged In As User';
-        header("location:user_home");
+    $prepare = $mysqli->prepare($sql);
+    $auth_prepare  = $mysqli->prepare($auth);
+
+    $bind = $prepare->bind_param(
+        'sssss',
+        $host_id,
+        $host_name,
+        $host_phone_no,
+        $host_email,
+        $host_address
+    );
+    $auth_bind = $prepare->bind_param(
+        'sssss',
+        $login_id,
+        $host_email,
+        $login_password,
+        $login_rank,
+        $host_id
+    );
+
+    $prepare->execute();
+    $auth_prepare->execute();
+
+    if ($prepare && $auth_prepare) {
+        /* Pass This Alert Via Session */
+        $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
+        header('Location: login');
         exit;
     } else {
-        $err = "Login Failed, Please Check Your Credentials And Login Permission ";
+        $err = "Failed!, Please Try Again";
     }
 }
+
+
 require_once('../partials/head.php');
 ?>
 
@@ -136,7 +152,7 @@ require_once('../partials/head.php');
                         <label class="floating-label">Login Password</label>
                     </div>
                     <br><br>
-                    <input type="submit" name="login" value="Sign In" class="btn btn-block btn-info btn-lg">
+                    <input type="submit" name="sign_up" value="Sign Up" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>
         </div>
@@ -146,7 +162,7 @@ require_once('../partials/head.php');
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="sign_up_step_1" class="link">Create Account</a>
+                    <a href="login" class="link">Already Has Account</a>
                 </div>
             </div>
         </div>
