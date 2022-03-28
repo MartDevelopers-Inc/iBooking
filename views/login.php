@@ -63,15 +63,12 @@ if (isset($_POST['login'])) {
 
     $stmt = $mysqli->prepare("SELECT login_email, login_password, login_rank, login_user_id, login_admin_id, login_host_id FROM login l 
     INNER JOIN admin a ON l.login_admin_id = a.admin_id
-    INNER JOIN user u ON u.user_id = l.login_user_id
-    INNER JOIN host h ON h.host_id = l.login_host_id
     WHERE login_email =? AND login_password =?");
     $stmt->bind_param('ss', $email, $password);
     $stmt->execute(); //execute bind
 
     $stmt->bind_result($email, $password, $login_rank, $login_user_id, $login_admin_id, $login_host_id);
     $rs = $stmt->fetch();
-    $_SESSION['login_user_id'] = $login_user_id;
     $_SESSION['login_admin_id'] = $login_admin_id;
     $_SESSION['login_rank'] = $login_rank;
 

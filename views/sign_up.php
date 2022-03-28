@@ -71,7 +71,7 @@ if (isset($_POST['sign_up'])) {
 
     /* Persist */
 
-    $sql = "INSERT INTO hosts(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
+    $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
     $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
 
     $prepare = $mysqli->prepare($sql);
@@ -85,7 +85,7 @@ if (isset($_POST['sign_up'])) {
         $host_email,
         $host_address
     );
-    $auth_bind = $prepare->bind_param(
+    $auth_bind = $auth_prepare->bind_param(
         'sssss',
         $login_id,
         $host_email,
@@ -136,7 +136,7 @@ require_once('../partials/head.php');
                         <label class="floating-label">Full Name</label>
                     </div>
                     <div class="form-group floating-form-group">
-                        <input type="text" required name="host_name" class="form-control floating-input">
+                        <input type="text" required name="host_phone_no" class="form-control floating-input">
                         <label class="floating-label">Contacts</label>
                     </div>
                     <div class="form-group floating-form-group">
