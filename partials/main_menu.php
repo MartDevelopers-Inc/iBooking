@@ -10,7 +10,34 @@
                 <a class="nav-link" href="home">Home
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="hosts">Hosts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="users">Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="service_types">Service Types
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="service_files">Service Files
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="bookings">Bookings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="payments">Payments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports">Reports
+                </a>
+            </li>
         </ul>
         <a href="logout" class="text-danger my-3 d-block">Sign Out</a>
         <button class="btn btn-danger sqaure-btn close text-white"><svg xmlns='http://www.w3.org/2000/svg' class="icon-size-24" viewBox='0 0 512 512'>
