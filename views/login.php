@@ -57,7 +57,7 @@
 session_start();
 require_once('../config/config.php');
 
-if (isset($_POST['Login'])) {
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = sha1(md5($_POST['password']));
 

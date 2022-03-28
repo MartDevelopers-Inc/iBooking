@@ -29,52 +29,80 @@
     });
 </script>
 <!-- Init Sweet Alerts -->
+<!-- Init Sweet Alerts -->
 <?php if (isset($success)) { ?>
     <!-- Pop Success Alert -->
     <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
+        Swal.fire({
+            title: 'Success',
+            html: '<?php echo $success; ?>',
+            timer: 2500,
+            type: "success",
             showConfirmButton: false,
-            timer: 3000
-        });
-        Toast.fire({
-            type: 'success',
-            title: '<?php echo $success; ?>',
+            onBeforeOpen: () => {
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 1000)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('<?php echo $success; ?>')
+            }
         })
     </script>
 
 <?php }
 if (isset($err)) { ?>
     <script>
-        /* Pop Error Message */
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
+        Swal.fire({
+            title: 'Failed',
+            html: '<?php echo $err; ?>',
+            timer: 2500,
+            type: "error",
             showConfirmButton: false,
-            timer: 3000
-        });
-        Toast.fire({
-            type: 'error',
-            title: '<?php echo $err; ?>',
+            onBeforeOpen: () => {
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 1000)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('<?php echo $err; ?>')
+            }
         })
     </script>
 
 <?php }
 if (isset($info)) { ?>
     <script>
-        /* Pop Warning  */
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
+        Swal.fire({
+            title: 'Failed',
+            html: '<?php echo $info; ?>',
+            timer: 2500,
+            type: "info",
             showConfirmButton: false,
-            timer: 3000
-        });
-        Toast.fire({
-            type: 'info',
-            title: '<?php echo $info; ?>',
+            onBeforeOpen: () => {
+                timerInterval = setInterval(() => {
+                    Swal.getContent().querySelector('strong')
+                        .textContent = Swal.getTimerLeft()
+                }, 1000)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('<?php echo $info; ?>')
+            }
         })
     </script>
 
 <?php }
-?>
