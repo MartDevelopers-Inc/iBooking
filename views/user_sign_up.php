@@ -58,105 +58,56 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 
-if ($_GET['user'] == 'Host') {
-    /* Sign Up As Host */
-    if (isset($_POST['sign_up'])) {
-        $host_id = $sys_gen_id_alt_1;
-        $host_email  = $_POST['host_email'];
-        $host_name = $_POST['host_name'];
-        $host_phone_no = $_POST['host_phone_no'];
-        $host_address = $_POST['host_address'];
-        /* Login Attributes */
-        $login_id = $sys_gen_id;
-        $login_rank = $_GET['user'];
-        $login_password = sha1(md5($_POST['login_password']));
+/* Sign Up As Host */
+if (isset($_POST['sign_up'])) {
+    $host_id = $sys_gen_id_alt_1;
+    $host_email  = $_POST['host_email'];
+    $host_name = $_POST['host_name'];
+    $host_phone_no = $_POST['host_phone_no'];
+    $host_address = $_POST['host_address'];
+    /* Login Attributes */
+    $login_id = $sys_gen_id;
+    $login_rank = $_GET['user'];
+    $login_password = sha1(md5($_POST['login_password']));
 
-        /* Persist */
+    /* Persist */
 
-        $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
-        $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
+    $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
+    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
 
-        $prepare = $mysqli->prepare($sql);
-        $auth_prepare  = $mysqli->prepare($auth);
+    $prepare = $mysqli->prepare($sql);
+    $auth_prepare  = $mysqli->prepare($auth);
 
-        $bind = $prepare->bind_param(
-            'sssss',
-            $host_id,
-            $host_name,
-            $host_phone_no,
-            $host_email,
-            $host_address
-        );
-        $auth_bind = $auth_prepare->bind_param(
-            'sssss',
-            $login_id,
-            $host_email,
-            $login_password,
-            $login_rank,
-            $host_id
-        );
+    $bind = $prepare->bind_param(
+        'sssss',
+        $host_id,
+        $host_name,
+        $host_phone_no,
+        $host_email,
+        $host_address
+    );
+    $auth_bind = $auth_prepare->bind_param(
+        'sssss',
+        $login_id,
+        $host_email,
+        $login_password,
+        $login_rank,
+        $host_id
+    );
 
-        $prepare->execute();
-        $auth_prepare->execute();
+    $prepare->execute();
+    $auth_prepare->execute();
 
-        if ($prepare && $auth_prepare) {
-            /* Pass This Alert Via Session */
-            $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
-            header('Location: host_login');
-            exit;
-        } else {
-            $err = "Failed!, Please Try Again";
-        }
-    }
-} else {
-    /* Sign Up As User */
-    if (isset($_POST['sign_up'])) {
-        $user_id = $sys_gen_id_alt_1;
-        $user_name  = $_POST['host_name'];
-        $user_mobile = $_POST['host_phone_no'];
-        $user_email = $_POST['host_email'];
-        /* Login Attributes */
-        $login_id = $sys_gen_id;
-        $login_rank = $_GET['user'];
-        $login_password = sha1(md5($_POST['login_password']));
-
-        /* Persist */
-
-        $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
-        $auth = "INSERT INTO users(user_id, user_name, user_email, user_mobile) VALUES(?,?,?,?)";
-
-        $prepare = $mysqli->prepare($sql);
-        $auth_prepare  = $mysqli->prepare($auth);
-
-        $bind = $prepare->bind_param(
-            'ssss',
-            $user_id,
-            $user_name,
-            $user_email,
-            $user_mobile
-        );
-        $auth_bind = $auth_prepare->bind_param(
-            'sssss',
-            $login_id,
-            $user_email,
-            $login_password,
-            $login_rank,
-            $user_id
-        );
-
-        $prepare->execute();
-        $auth_prepare->execute();
-
-        if ($prepare && $auth_prepare) {
-            /* Pass This Alert Via Session */
-            $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
-            header('Location: user_login');
-            exit;
-        } else {
-            $err = "Failed!, Please Try Again";
-        }
+    if ($prepare && $auth_prepare) {
+        /* Pass This Alert Via Session */
+        $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
+        header('Location: host_login');
+        exit;
+    } else {
+        $err = "Failed!, Please Try Again";
     }
 }
+
 
 
 require_once('../partials/head.php');
@@ -183,20 +134,16 @@ require_once('../partials/head.php');
             <div class="login-box">
                 <form method="POST">
                     <div class="form-group floating-form-group">
-                        <input type="text" required name="host_name" class="form-control floating-input">
+                        <input type="text" required name="user_name" class="form-control floating-input">
                         <label class="floating-label">Full Name</label>
                     </div>
                     <div class="form-group floating-form-group">
-                        <input type="text" required name="host_phone_no" class="form-control floating-input">
+                        <input type="text" required name="user_mobile" class="form-control floating-input">
                         <label class="floating-label">Contacts</label>
                     </div>
                     <div class="form-group floating-form-group">
-                        <input type="text" required name="host_email" class="form-control floating-input">
+                        <input type="text" required name="user_email" class="form-control floating-input">
                         <label class="floating-label">Email</label>
-                    </div>
-                    <div class="form-group floating-form-group">
-                        <input type="text" name="host_address" class="form-control floating-input">
-                        <label class="floating-label">Address</label>
                     </div>
                     <div class="form-group floating-form-group">
                         <input type="password" required name="login_password" class="form-control floating-input" autofocus>
@@ -213,7 +160,7 @@ require_once('../partials/head.php');
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="login" class="link">Already Has Account</a>
+                    <a href="user_login" class="link">Already Has Account</a>
                 </div>
             </div>
         </div>
