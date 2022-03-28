@@ -71,7 +71,7 @@ require_once('../partials/head.php');
 
             </div>
             <div class="ml-auto col-auto px-0">
-                <a href="index.html" class="btn btn-link text-secondary">Skip</a>
+                <a href="login" class="btn btn-link text-secondary">Skip</a>
             </div>
         </div>
     </header>
@@ -79,6 +79,7 @@ require_once('../partials/head.php');
 
     <!-- Begin page content -->
     <main class="flex-shrink-0">
+        <br><br><br><br>
         <div class="container">
             <!-- Swiper -->
             <div class="swiper-container">
@@ -86,7 +87,7 @@ require_once('../partials/head.php');
                     <div class="swiper-slide text-center pb-3">
                         <div class="image-circle">
                             <figure class="background">
-                                <img src="img/image-2.jpg" alt="">
+                                <img src="../public/img/image-2.jpg" alt="">
                             </figure>
                             <div class="icon icon-100 bg-dark text-white">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-48" viewBox='0 0 512 512'>
@@ -97,17 +98,17 @@ require_once('../partials/head.php');
                                 </svg>
                             </div>
                         </div>
-                        <h4 class="mt-0 mb-3">Best Houses & Villa</h4>
+                        <h4 class="mt-0 mb-3">Best Local Hotels</h4>
                         <div class="row mb-3">
                             <div class="col-10 mx-auto">
-                                <p class="small-font text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p class="small-font text-secondary">Hotel Rooms Designed to Meet Your Highest Expectations.</p>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide text-center pb-3">
                         <div class="image-circle">
                             <figure class="background">
-                                <img src="img/image-3.jpg" alt="">
+                                <img src="../public/img/image-3.jpg" alt="">
                             </figure>
                             <div class="icon icon-100 bg-dark text-white">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-48" viewBox='0 0 512 512'>
@@ -120,17 +121,17 @@ require_once('../partials/head.php');
                                 </svg>
                             </div>
                         </div>
-                        <h4 class="mt-0 mb-3">Book Rooms</h4>
+                        <h4 class="mt-0 mb-3">Exquisite Rentals</h4>
                         <div class="row mb-3">
                             <div class="col-10 mx-auto">
-                                <p class="small-font text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p class="small-font text-secondary">Allow your inquisitiveness to make the reservations.</p>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide text-center pb-3">
                         <div class="image-circle">
                             <figure class="background">
-                                <img src="img/image-2.jpg" alt="">
+                                <img src="../public/img/image-2.jpg" alt="">
                             </figure>
                             <div class="icon icon-100 bg-dark text-white">
                                 <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-48" viewBox='0 0 512 512'>
@@ -141,10 +142,10 @@ require_once('../partials/head.php');
                                 </svg>
                             </div>
                         </div>
-                        <h4 class="mt-0 mb-3">Best Houses & Villa</h4>
+                        <h4 class="mt-0 mb-3">Unique Homes & Cabins</h4>
                         <div class="row mb-3">
                             <div class="col-10 mx-auto">
-                                <p class="small-font text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p class="small-font text-secondary">Where the Art of Luxury City Living Achieves New Heights</p>
                             </div>
                         </div>
                     </div>
@@ -153,20 +154,20 @@ require_once('../partials/head.php');
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-    </main>
-
-    <footer class="footer mt-auto py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <a href="login" class="btn btn-block btn-info btn-lg">Sign In</a>
-                </div>
-                <div class="col">
-                    <a href="sign_up_step_1" class="btn btn-block btn-danger btn-lg">Sign Up</a>
+        <br><br><br><br>
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <a href="login" class="btn btn-block btn-info btn-lg">Sign In</a>
+                    </div>
+                    <div class="col">
+                        <a href="sign_up_step_1" class="btn btn-block btn-danger btn-lg">Sign Up</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <?php require_once('../partials/scripts.php'); ?>
 </body>
