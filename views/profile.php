@@ -66,7 +66,7 @@ if (isset($_POST['update_personal_info'])) {
     $admin_email = $_POST['admin_email'];
 
     /* Persist */
-    $sql = "INSERT INTO admin (admin_name, admin_mobile, admin_email, admin_id) VALUES(?,?,?,?)";
+    $sql = "UPDATE admin SET  admin_name =?, admin_mobile =?, admin_email =? WHERE admin_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'ssss',
@@ -82,7 +82,37 @@ if (isset($_POST['update_personal_info'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Login Info */
+if (isset($_POST['update_login'])) {
+    $login_email = $_POST['login_email'];
+    $login_admin_id = $_SESSION['login_admin_id'];
+    $old_password = sha1(md5($_POST['old_password']));
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If Old Passwords Match */
+    $sql = "SELECT * FROM login WHERE login_admin_id = '$login_admin_id'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $row = mysqli_fetch_assoc($res);
+        if ($old_password != $row['login_password']) {
+            $err =  "Please Enter Correct Old Password";
+        } elseif ($new_password != $confirm_password) {
+            $err = "Confirmation Password Does Not Match";
+        } else {
+            $query = "UPDATE login SET  login_password =? WHERE login_admin_id =?";
+            $stmt = $mysqli->prepare($query);
+            $rc = $stmt->bind_param('ss', $new_password, $login_admin_id);
+            $stmt->execute();
+            if ($stmt) {
+                $success = "Authentication Details Updated";
+            } else {
+                $err = "Please Try Again Or Try Later";
+            }
+        }
+    }
+}
 require_once('../partials/head.php');
 ?>
 
