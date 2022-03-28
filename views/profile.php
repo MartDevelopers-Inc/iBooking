@@ -59,6 +59,29 @@ require_once('../config/config.php');
 require_once('../config/checklogin.php');
 admin_check_login();
 /* Update Personal Details */
+if (isset($_POST['update_personal_info'])) {
+    $admin_id = $_SESSION['login_admin_id'];
+    $admin_name = $_POST['admin_name'];
+    $admin_mobile = $_POST['admin_mobile'];
+    $admin_email = $_POST['admin_email'];
+
+    /* Persist */
+    $sql = "INSERT INTO admin (admin_name, admin_mobile, admin_email, admin_id) VALUES(?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssss',
+        $admin_name,
+        $admin_mobile,
+        $admin_email,
+        $admin_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Profile Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Update Login Info */
 require_once('../partials/head.php');
 ?>
@@ -111,133 +134,77 @@ require_once('../partials/head.php');
                 </div>
             </div>
             <div class="container mt-4">
-                <div class="card mt-3 mb-4 border border-outline-success">
+                <div class="card mt-3 mb-4 border border-success">
+                    <div class="card-head"><br>
+                        <h6 class="text-center">Personal Information</h6>
+                    </div>
+                    <hr>
                     <div class="card-body">
                         <form method="POST">
                             <div class="row mt-">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" class="form-control floating-input" value="">
+                                        <input type="text" name="admin_name" class="form-control floating-input" value="<?php echo $user->admin_name; ?>">
                                         <label class="floating-label">Full Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="email" class="form-control floating-input" value="amayjohnson@maxartkiller.coms ">
+                                        <input type="text" name="admin_mobile" class="form-control floating-input" value="<?php echo $user->admin_mobile; ?>">
+                                        <label class="floating-label">Contacts</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="email" name="admin_email" class="form-control floating-input" value="<?php echo $user->admin_email; ?>">
                                         <label class="floating-label">Email Address</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group floating-form-group active">
-                                        <div class="row">
-                                            <div class="col-2 col-md-1">
-                                                <input type="text" class="form-control floating-input" value="44">
-                                            </div>
-                                            <div class="col">
-                                                <input type="text" class="form-control floating-input" value="000 000 0000">
-                                            </div>
-                                        </div>
-                                        <label class="floating-label">Phone Number</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group floating-form-group active mb-0">
-                                        <input type="file" class="form-control floating-input" value="Amay Johnson">
-                                        <label class="floating-label">Change photo</label>
-                                    </div>
+                                <div class="col-12 col-md-6 text-right">
+                                    <input type="submit" name="update_personal_info" value="Update" class="btn btn-sm btn-primary">
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <h6>Email Preferences</h6>
-                <div class="card mt-3 mb-4">
-                    <div class="card-body px-0">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item border-color">
-                                <div class="row">
-                                    <div class="col-auto pr-0 align-self-center text-right">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
-                                            <label class="custom-control-label" for="customSwitch1"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-dark mb-1">Email Notification</h6>
-                                        <p class="text-secondary mb-0 small">Default all notification will be sent</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-color">
-                                <div class="row">
-                                    <div class="col-auto pr-0 align-self-center text-right">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
-                                            <label class="custom-control-label" for="customSwitch4"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-dark mb-1">SMS Notification</h6>
-                                        <p class="text-secondary mb-0 small">Receive SMS notification</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-color">
-                                <div class="row">
-                                    <div class="col-auto pr-0 align-self-center text-right">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                                            <label class="custom-control-label" for="customSwitch2"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-dark mb-1">Profile Avaialability</h6>
-                                        <p class="text-secondary mb-0 small">Everyone can see my profile in search</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-color">
-                                <div class="row">
-                                    <div class="col-auto pr-0 align-self-center text-right">
-                                        <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                                            <label class="custom-control-label" for="customSwitch3"></label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-dark mb-1">Sent Request</h6>
-                                        <p class="text-secondary mb-0 small">Everyone can sent me a request</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                <div class="card mt-3 mb-4 border border-success">
+                    <div class="card-head"><br>
+                        <h6 class="text-center">Login Information</h6>
                     </div>
-                </div>
-
-                <h6 class="mt-3">Change Password</h6>
-                <div class="card mt-3 mb-4">
+                    <hr>
                     <div class="card-body">
-                        <div class="row ">
-                            <div class="col-12 col-md-6">
-                                <div class="form-group floating-form-group">
-                                    <input type="password" class="form-control floating-input">
-                                    <label class="floating-label">Current Password</label>
+                        <form method="POST">
+                            <div class="row mt-">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="text" name="login_email" class="form-control floating-input" value="<?php echo $user->login_email; ?>">
+                                        <label class="floating-label">Login Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="password" name="old_password" class="form-control floating-input">
+                                        <label class="floating-label">Old Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="password" name="new_password" class="form-control floating-input">
+                                        <label class="floating-label">New Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="password" name="confirm_password" class="form-control floating-input">
+                                        <label class="floating-label">Confirm New Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 text-right">
+                                    <input type="submit" name="update_login" value="Update" class="btn btn-sm btn-primary">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group floating-form-group">
-                                    <input type="password" class="form-control floating-input">
-                                    <label class="floating-label">New Password</label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group floating-form-group mb-0">
-                                    <input type="password" class="form-control floating-input">
-                                    <label class="floating-label">Confirm New Password</label>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
