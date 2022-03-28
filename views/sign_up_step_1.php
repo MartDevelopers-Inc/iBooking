@@ -94,10 +94,10 @@ require_once('../partials/head.php');
             <footer class="footer mt-auto py-3">
                 <div class="row">
                     <div class="col">
-                        <a href="host_sign_up?user=Host" class="btn btn-block btn-info btn-lg">Join As Host</a>
+                        <a href="host_sign_up" class="btn btn-block btn-info btn-lg">Join As Host</a>
                     </div>
                     <div class="col">
-                        <a href="user_sign_up?user=User" class="btn btn-block btn-danger btn-lg">Join As User </a>
+                        <a href="user_sign_up" class="btn btn-block btn-danger btn-lg">Join As User </a>
                     </div>
                 </div>
             </footer>

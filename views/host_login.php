@@ -56,60 +56,39 @@
  */
 session_start();
 require_once('../config/config.php');
-require_once('../config/codeGen.php');
 
-/* Sign Up As Host */
-if (isset($_POST['sign_up'])) {
-    $host_id = $sys_gen_id_alt_1;
-    $host_email  = $_POST['host_email'];
-    $host_name = $_POST['host_name'];
-    $host_phone_no = $_POST['host_phone_no'];
-    $host_address = $_POST['host_address'];
-    /* Login Attributes */
-    $login_id = $sys_gen_id;
-    $login_rank = 'Host';
-    $login_password = sha1(md5($_POST['login_password']));
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = sha1(md5($_POST['password']));
 
-    /* Persist */
+    $stmt = $mysqli->prepare("SELECT login_email, login_password, login_rank, login_host_id FROM login l 
+    INNER JOIN host h ON h.host_id = l.login_host_id
+    WHERE login_email =? AND login_password =?");
+    $stmt->bind_param('ss', $email, $password);
+    $stmt->execute(); //execute bind
 
-    $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
-    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
+    $stmt->bind_result($email, $password, $login_rank, $login_user_id, $login_host_id);
+    $rs = $stmt->fetch();
+    $_SESSION['login_host_id'] = $login_host_id;
+    $_SESSION['login_rank'] = $login_rank;
 
-    $prepare = $mysqli->prepare($sql);
-    $auth_prepare  = $mysqli->prepare($auth);
-
-    $bind = $prepare->bind_param(
-        'sssss',
-        $host_id,
-        $host_name,
-        $host_phone_no,
-        $host_email,
-        $host_address
-    );
-    $auth_bind = $auth_prepare->bind_param(
-        'sssss',
-        $login_id,
-        $host_email,
-        $login_password,
-        $login_rank,
-        $host_id
-    );
-
-    $prepare->execute();
-    $auth_prepare->execute();
-
-    if ($prepare && $auth_prepare) {
-        /* Pass This Alert Via Session */
-        $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
-        header('Location: host_login');
+    /* Decide Login User Dashboard Based On User Rank */
+    if ($rs && $login_rank == 'Administrator') {
+        $_SESSION['success'] = 'You Have Successfully Logged In As Administrator';
+        header("location:home");
+        exit;
+    } else if ($rs && $login_rank == 'Host') {
+        $_SESSION['success'] = 'You Have Successfully Logged In As Host';
+        header("location:host_home");
+        exit;
+    } else if ($rs && $login_rank == 'User') {
+        $_SESSION['success'] = 'You Have Successfully Logged In As User';
+        header("location:user_home");
         exit;
     } else {
-        $err = "Failed!, Please Try Again";
+        $err = "Login Failed, Please Check Your Credentials And Login Permission ";
     }
 }
-
-
-
 require_once('../partials/head.php');
 ?>
 
@@ -134,27 +113,19 @@ require_once('../partials/head.php');
             <div class="login-box">
                 <form method="POST">
                     <div class="form-group floating-form-group">
-                        <input type="text" required name="host_name" class="form-control floating-input">
-                        <label class="floating-label">Full Name</label>
+                        <input type="email" required name="email" class="form-control floating-input">
+                        <label class="floating-label">Email Address</label>
                     </div>
                     <div class="form-group floating-form-group">
-                        <input type="text" required name="host_phone_no" class="form-control floating-input">
-                        <label class="floating-label">Contacts</label>
+                        <input type="password" required name="password" class="form-control floating-input" autofocus>
+                        <label class="floating-label">Password</label>
                     </div>
-                    <div class="form-group floating-form-group">
-                        <input type="text" required name="host_email" class="form-control floating-input">
-                        <label class="floating-label">Email</label>
-                    </div>
-                    <div class="form-group floating-form-group">
-                        <input type="text" name="host_address" class="form-control floating-input">
-                        <label class="floating-label">Address</label>
-                    </div>
-                    <div class="form-group floating-form-group">
-                        <input type="password" required name="login_password" class="form-control floating-input" autofocus>
-                        <label class="floating-label">Login Password</label>
+                    <br>
+                    <div class="form-group my-4">
+                        <a href="reset_password" class="link">Forget password?</a>
                     </div>
                     <br><br>
-                    <input type="submit" name="sign_up" value="Sign Up" class="btn btn-block btn-info btn-lg">
+                    <input type="submit" name="login" value="Sign In" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>
         </div>
@@ -164,7 +135,7 @@ require_once('../partials/head.php');
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="host_login" class="link">Already Has Account</a>
+                    <a href="sign_up_step_1" class="link">Create Account</a>
                 </div>
             </div>
         </div>

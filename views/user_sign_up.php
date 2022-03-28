@@ -60,48 +60,45 @@ require_once('../config/codeGen.php');
 
 /* Sign Up As Host */
 if (isset($_POST['sign_up'])) {
-    $host_id = $sys_gen_id_alt_1;
-    $host_email  = $_POST['host_email'];
-    $host_name = $_POST['host_name'];
-    $host_phone_no = $_POST['host_phone_no'];
-    $host_address = $_POST['host_address'];
+    $user_id = $sys_gen_id_alt_1;
+    $user_email  = $_POST['user_email'];
+    $user_name = $_POST['user_name'];
+    $user_mobile = $_POST['user_mobile'];
     /* Login Attributes */
     $login_id = $sys_gen_id;
-    $login_rank = $_GET['user'];
+    $login_rank = 'User';
     $login_password = sha1(md5($_POST['login_password']));
 
     /* Persist */
 
-    $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
-    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
+    $sql = "INSERT INTO user(user_id, user_name, user_email, user_mobile) VALUES(?,?,?,?)";
+    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_user_id) VALUES(?,?,?,?,?)";
 
     $prepare = $mysqli->prepare($sql);
     $auth_prepare  = $mysqli->prepare($auth);
 
     $bind = $prepare->bind_param(
-        'sssss',
-        $host_id,
-        $host_name,
-        $host_phone_no,
-        $host_email,
-        $host_address
+        'ssss',
+        $user_id,
+        $user_name,
+        $user_email,
+        $user_mobile
     );
     $auth_bind = $auth_prepare->bind_param(
         'sssss',
         $login_id,
-        $host_email,
+        $user_email,
         $login_password,
         $login_rank,
-        $host_id
+        $user_id
     );
-
     $prepare->execute();
     $auth_prepare->execute();
 
     if ($prepare && $auth_prepare) {
         /* Pass This Alert Via Session */
         $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
-        header('Location: host_login');
+        header('Location: user_login');
         exit;
     } else {
         $err = "Failed!, Please Try Again";
