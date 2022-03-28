@@ -54,6 +54,24 @@
  * IN NO EVENT WILL MartDevelopers Inc  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
+session_start();
+require_once('../config/config.php');
+/* Handle Password Reset */
+if (isset($_POST['Reset_Password'])) {
+    $login_email = $_POST['login_email'];
+    /* Check If User Exists */
+    $sql = "SELECT * FROM  login WHERE login_email = '$login_email'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        /* Redirect User To Confirm Password */
+        $_SESSION['success'] = 'Password Reset Token Generated, Proceed To Confirm Password';
+        $_SESSION['login_email'] = $login_email;
+        header('Location: confirm_password');
+        exit;
+    } else {
+        $err = "Email Address Does Not Exist";
+    }
+}
 require_once('../partials/head.php');
 ?>
 
@@ -83,7 +101,7 @@ require_once('../partials/head.php');
                         <label class="floating-label">Email Address</label>
                     </div>
                     <div class="form-group my-4">
-                        <a href="login" class="link">Remember Password?</a>
+                        <a href="landing" class="link">Remember Password?</a>
                     </div>
                     <br><br>
                     <input type="submit" name="reset_password" value="Reset Password" class="btn btn-block btn-info btn-lg">

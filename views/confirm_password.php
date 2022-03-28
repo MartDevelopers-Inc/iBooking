@@ -54,6 +54,36 @@
  * IN NO EVENT WILL MartDevelopers Inc  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
+session_start();
+require_once('../config/config.php');
+/*  Confirm Passwords */
+if (isset($_POST['reset_password'])) {
+    $login_email = $_SESSION['login_email'];
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If Passwords Match */
+    if ($new_password != $confirm_password) {
+        $err = "Passwords Does Not Match";
+    } else {
+        $sql = "UPDATE login SET login_password =? WHERE login_email =?";
+        $prepare = $mysqli->prepare($sql);
+        $bind = $prepare->bind_param(
+            'ss',
+            $new_password,
+            $login_email
+        );
+        $prepare->execute();
+        if ($prepare) {
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = 'Your Password Has Been Reset Proceed To Login';
+            header('Location: landing');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
 require_once('../partials/head.php');
 ?>
 

@@ -61,21 +61,6 @@ require_once('../partials/head.php');
     <!-- screen loader -->
     <?php require_once('../partials/preloader.php'); ?>
 
-    <!-- Fixed navbar -->
-    <header class="header">
-        <div class="row">
-            <div class="col-auto px-0">
-
-            </div>
-            <div class="text-left col">
-
-            </div>
-            <div class="ml-auto col-auto px-0">
-                <a href="login" class="btn btn-link text-secondary">Skip</a>
-            </div>
-        </div>
-    </header>
-
 
     <!-- Begin page content -->
     <main class="flex-shrink-0">
@@ -154,15 +139,24 @@ require_once('../partials/head.php');
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <br><br><br><br>
+        <br><br>
         <footer class="footer mt-auto py-3">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <a href="login" class="btn btn-block btn-info btn-lg">Sign In</a>
+                        <a href="login" class="btn btn-block btn-info btn-lg">Login As Admin</a>
                     </div>
+                </div>
+                <br>
+                <div class="row">
                     <div class="col">
-                        <a href="sign_up_step_1" class="btn btn-block btn-danger btn-lg">Sign Up</a>
+                        <a href="host_login" class="btn btn-block btn-info btn-lg">Login As Host</a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <a href="user_login" class="btn btn-block btn-info btn-lg">Login As User</a>
                     </div>
                 </div>
             </div>
