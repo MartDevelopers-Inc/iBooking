@@ -31,7 +31,7 @@
     <!-- Custom styles for this template -->
     <link href="../public/css/style.css" rel="stylesheet" id="style">
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../public/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../public/vendor/iziToast/iziToast.min.css">
     <?php
     /* Alert Sesion Via Alerts */
     if (isset($_SESSION['success'])) {

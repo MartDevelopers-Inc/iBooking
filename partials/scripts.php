@@ -28,81 +28,53 @@
         });
     });
 </script>
-<!-- Init Sweet Alerts -->
-<!-- Init Sweet Alerts -->
+<script src="../public/vendor/iziToast/iziToast.min.js"></script>
+<!-- Initialize Alerts -->
 <?php if (isset($success)) { ?>
-    <!-- Pop Success Alert -->
     <script>
-        Swal.fire({
+        iziToast.success({
             title: 'Success',
-            html: '<?php echo $success; ?>',
-            timer: 2500,
-            type: "success",
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong')
-                        .textContent = Swal.getTimerLeft()
-                }, 1000)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('<?php echo $success; ?>')
-            }
-        })
+            position: 'center',
+            transitionIn: 'flipInX',
+            transitionOut: 'flipOutX',
+            transitionInMobile: 'fadeInUp',
+            transitionOutMobile: 'fadeOutDown',
+            message: '<?php echo $success; ?>',
+        });
     </script>
 
-<?php }
-if (isset($err)) { ?>
+<?php } ?>
+
+<?php if (isset($err)) { ?>
     <script>
-        Swal.fire({
-            title: 'Failed',
-            html: '<?php echo $err; ?>',
-            timer: 2500,
-            type: "error",
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong')
-                        .textContent = Swal.getTimerLeft()
-                }, 1000)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('<?php echo $err; ?>')
-            }
-        })
+        iziToast.error({
+            title: 'Error',
+            timeout: 10000,
+            resetOnHover: true,
+            position: 'center',
+            transitionIn: 'flipInX',
+            transitionOut: 'flipOutX',
+            transitionInMobile: 'fadeInUp',
+            transitionOutMobile: 'fadeOutDown',
+            message: '<?php echo $err; ?>',
+        });
     </script>
 
-<?php }
-if (isset($info)) { ?>
+<?php } ?>
+
+<?php if (isset($info)) { ?>
     <script>
-        Swal.fire({
-            title: 'Failed',
-            html: '<?php echo $info; ?>',
-            timer: 2500,
-            type: "info",
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong')
-                        .textContent = Swal.getTimerLeft()
-                }, 1000)
-            },
-            onClose: () => {
-                clearInterval(timerInterval)
-            }
-        }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('<?php echo $info; ?>')
-            }
-        })
+        iziToast.warning({
+            title: 'Warning',
+            position: 'center',
+            transitionIn: 'flipInX',
+            transitionOut: 'flipOutX',
+            transitionIn: 'fadeInUp',
+            transitionInMobile: 'fadeInUp',
+            transitionOutMobile: 'fadeOutDown',
+            message: '<?php echo $info; ?>',
+        });
     </script>
 
 <?php }
+?>
