@@ -178,19 +178,16 @@ require_once('../partials/head.php');
                                                 Status: <?php echo $services->booking_status; ?> <br>
                                             </p>
                                             <hr>
-                                            <p class="">
-                                                <?php echo $services->booking_description; ?>
-                                            </p>
                                         </div>
                                     </div>
-                                    <div class="card-footer text-right mb-3 sm">
-                                        <a href="booking?view=<?php echo $services->booking_id; ?>" class="badge  badge-pill badge-warning">
+                                    <div class="card-footer text-center mb-3 sm">
+                                        <a href="booking?view=<?php echo $services->booking_id; ?>" class="badge  badge-pill badge-success">
                                             View
                                         </a>
-                                        <a href="service_host?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-warning">
+                                        <a href="booking_update?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-warning">
                                             Update
                                         </a>
-                                        <a href="services_host?delete=<?php echo $services->host_service_id; ?>" class="badge badge-pill badge-danger">
+                                        <a href="bookings?delete_booking=<?php echo $services->host_service_id; ?>" class="badge badge-pill badge-danger">
                                             Delete
                                         </a>
                                     </div>
