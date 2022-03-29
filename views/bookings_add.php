@@ -198,7 +198,7 @@ require_once('../partials/head.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <select type="text" name="booking_status " class="form-control floating-input">
+                                        <select type="text" name="booking_status" class="form-control floating-input">
                                             <option>Pending</option>
                                             <option>Approved</option>
                                         </select>
