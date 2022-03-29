@@ -104,6 +104,7 @@ require_once('../partials/head.php');
         <?php require_once('../partials/header.php'); ?>
         <br><br>
         <hr>
+        <br><br>
         <!-- Hosts -->
         <div class="container mt-4">
             <div class="card border border-success">
