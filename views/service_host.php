@@ -62,25 +62,30 @@ admin_check_login();
 
 /* Update Service */
 if (isset($_POST['update_service'])) {
-    $service_id = $_GET['view'];
-    $service_number = $_POST['service_number'];
-    $service_name = $_POST['service_name'];
-    $service_description = $_POST['service_description'];
+    $host_service_id = $_GET['view'];
+    $host_service_host_id  = $_POST['host_service_host_id'];
+    $host_service_service_id = $_POST['host_service_service_id'];
+    $host_service_description = $_POST['host_service_description'];
+    $host_service_cost_description = $_POST['host_service_cost_description'];
+    $host_service_location = $_POST['host_service_location'];
 
-    /* Persist */
-    $sql = "UPDATE service_types SET service_name =?, service_number =?, service_description =? WHERE service_id =?";
+    /* Persist*/
+    $sql = "UPDATE  host_service SET host_service_host_id =?, host_service_service_id =?, host_service_description =?,
+    host_service_cost_description =?, host_service_location =? WHERE host_service_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
-        $service_name,
-        $service_number,
-        $service_description,
-        $service_id
+        'ssssss',
+        $host_service_host_id,
+        $host_service_service_id,
+        $host_service_description,
+        $host_service_cost_description,
+        $host_service_location,
+        $host_service_id
     );
     $prepare->execute();
     if ($prepare) {
-        $_SESSION['success'] = "Service Updated";
-        header('Location: service_types');
+        $_SESSION['success'] = "Host Service Updated";
+        header('Location: services_host');
         exit;
     } else {
         $err = "Failed!, Please Try Again";
