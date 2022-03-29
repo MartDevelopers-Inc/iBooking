@@ -54,6 +54,9 @@
  * IN NO EVENT WILL MartDevelopers Inc  LIABILITY FOR ANY CLAIM, WHETHER IN CONTRACT 
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
+
+use PHPMailer\PHPMailer\POP3;
+
 session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
@@ -61,6 +64,46 @@ require_once('../config/checklogin.php');
 admin_check_login();
 /* Add Booking */
 if (isset($_POST['add_booking'])) {
+    /* Booking Attributes */
+    $booking_id = $sys_gen_id;
+    $booking_user_id  = $_POST['booking_user_id'];
+    $booking_ref  = $a . $b;
+    $booking_description  = $_POST['booking_description'];
+    $booking_host_service_id = $_GET['service'];
+    $booking_date = $_POST['booking_date'];
+    $booking_time = $_POST['booking_time'];
+    $booking_requested_start_date = $_POST['booking_requested_start_date'];
+    $booking_requested_start_time = $_POST['booking_requested_start_time'];
+    $booking_requested_end_date = $_POST['booking_requested_end_date'];
+    $booking_requested_end_time =  $_POST['booking_requested_end_time'];
+    $booking_status = $_POST['booking_status'];
+
+    /* Persist */
+    $sql = "INSERT INTO  booking(booking_id, booking_user_id, booking_ref, booking_description, booking_host_service_id, 
+    booking_date,  booking_time, booking_requested_start_date, booking_requested_start_time, booking_requested_end_date,
+    booking_requested_end_time, booking_status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssssssssss',
+        $booking_id,
+        $booking_user_id,
+        $booking_ref,
+        $booking_description,
+        $booking_host_service_id,
+        $booking_date,
+        $booking_time,
+        $booking_requested_start_date,
+        $booking_requested_start_time,
+        $booking_requested_end_date,
+        $booking_requested_end_time,
+        $booking_status
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Booking Confirmed, Proceed To Pay";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
 }
 require_once('../partials/head.php');
 ?>
