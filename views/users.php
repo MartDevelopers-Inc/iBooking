@@ -61,7 +61,7 @@ require_once('../config/checklogin.php');
 admin_check_login();
 
 /* Add User */
-if (isset($_POST['sign_up'])) {
+if (isset($_POST['add_user'])) {
     $user_id = $sys_gen_id_alt_1;
     $user_email  = $_POST['user_email'];
     $user_name = $_POST['user_name'];
@@ -108,7 +108,7 @@ if (isset($_POST['sign_up'])) {
 if (isset($_GET['delete'])) {
     $delete = $_GET['delete'];
     /* Persist */
-    $sql = "DELETE FROM user WHERE user = '$delete'";
+    $sql = "DELETE FROM user WHERE user_id = '$delete'";
     $prepare = $mysqli->prepare($sql);
     $prepare->execute();
     if ($prepare) {
@@ -204,7 +204,7 @@ require_once('../partials/head.php');
                 <div class="card-body">
                     <div class="row px-2">
                         <?php
-                        $ret = "SELECT * FROM  users";
+                        $ret = "SELECT * FROM  user";
                         $stmt = $mysqli->prepare($ret);
                         $stmt->execute(); //ok
                         $res = $stmt->get_result();
