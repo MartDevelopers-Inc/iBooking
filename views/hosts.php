@@ -102,7 +102,23 @@ if (isset($_POST['add_host'])) {
 
     if ($prepare && $auth_prepare) {
         $success = "Host Account Created";
-g    } else {
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
+/* Delete Host */
+if (isset($_GET['delete'])) {
+    $delete = $_GET['delete'];
+    /* Persist */
+    $sql = "DELETE FROM host WHERE host_id = '$delete'";
+    $prepare = $mysqli->prepare($sql);
+    $prepare->execute();
+    if ($prepare) {
+        $_SESSION['success'] = "Host Account Deleted";
+        header('Location: hosts');
+        exit;
+    } else {
         $err = "Failed!, Please Try Again";
     }
 }
@@ -228,6 +244,14 @@ require_once('../partials/head.php');
                                                 Address: <?php echo $host->host_address; ?>
                                             </p>
                                         </div>
+                                    </div>
+                                    <div class="card-footer text-right mb-3 sm">
+                                        <a href="host?view=<?php echo $host->host_id; ?>" class="badge  badge-pill badge-warning">
+                                            Update
+                                        </a>
+                                        <a href="hosts?delete=<?php echo $host->host_id; ?>" class="badge badge-pill badge-danger">
+                                            Delete
+                                        </a>
                                     </div>
                                 </div>
                                 <br>
