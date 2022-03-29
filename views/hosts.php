@@ -56,8 +56,56 @@
  */
 session_start();
 require_once('../config/config.php');
+require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 admin_check_login();
+
+/* Sign Up As Host */
+if (isset($_POST['add_host'])) {
+    $host_id = $sys_gen_id_alt_1;
+    $host_email  = $_POST['host_email'];
+    $host_name = $_POST['host_name'];
+    $host_phone_no = $_POST['host_phone_no'];
+    $host_address = $_POST['host_address'];
+    /* Login Attributes */
+    $login_id = $sys_gen_id;
+    $login_rank = 'Host';
+    $login_password = sha1(md5($_POST['login_password']));
+
+    /* Persist */
+
+    $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
+    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
+
+    $prepare = $mysqli->prepare($sql);
+    $auth_prepare  = $mysqli->prepare($auth);
+
+    $bind = $prepare->bind_param(
+        'sssss',
+        $host_id,
+        $host_name,
+        $host_phone_no,
+        $host_email,
+        $host_address
+    );
+    $auth_bind = $auth_prepare->bind_param(
+        'sssss',
+        $login_id,
+        $host_email,
+        $login_password,
+        $login_rank,
+        $host_id
+    );
+
+    $prepare->execute();
+    $auth_prepare->execute();
+
+    if ($prepare && $auth_prepare) {
+        $success = "Host Account Created";
+g    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../partials/head.php');
 ?>
 
@@ -112,13 +160,13 @@ require_once('../partials/head.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="email" name="host_address" class="form-control floating-input">
+                                        <input type="text" name="host_address" class="form-control floating-input">
                                         <label class="floating-label">Address</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="email" name="login_password" class="form-control floating-input">
+                                        <input type="password" name="login_password" class="form-control floating-input">
                                         <label class="floating-label">Password</label>
                                     </div>
                                 </div>
