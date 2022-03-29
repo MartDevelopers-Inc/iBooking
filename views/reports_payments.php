@@ -86,7 +86,7 @@ require_once('../partials/head.php');
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph-fill" viewBox="0 0 16 16">
                                     <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm.5 10v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z" />
                                 </svg>
-                                <span class="vm ml-2">iBooking Bookings Reports</span>
+                                <span class="text-center vm ml-2">Payments Reports</span>
                             </h6>
                         </div>
                     </div>
@@ -95,15 +95,15 @@ require_once('../partials/head.php');
                     <table id="report" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Service Details</th>
-                                <th>Host Details</th>
                                 <th>User Details</th>
                                 <th>Bookings Details</th>
+                                <th>Payment Details</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $ret = "SELECT * FROM  booking b
+                            $ret = "SELECT * FROM payment p
+                            INNER JOIN  booking b ON b.booking_id  = p.payment_booking_id
                             INNER JOIN host_service hs ON b.booking_host_service_id = hs.host_service_id
                             INNER JOIN service_types st ON st.service_id = hs.host_service_service_id
                             INNER JOIN host h ON h.host_id = hs.host_service_host_id
@@ -115,15 +115,6 @@ require_once('../partials/head.php');
                             ?>
                                 <tr>
                                     <td>
-                                        <br>#: <?php echo $services->service_number; ?> <br>
-                                        Name : <?php echo $services->service_name; ?> <br>
-                                    </td>
-                                    <td>
-                                        Name:<?php echo $services->host_name; ?><br>
-                                        Email: <?php echo $services->host_email; ?><br>
-                                        Contacts: <?php echo $services->host_phone_no; ?><br>
-                                    </td>
-                                    <td>
                                         Name:<?php echo $services->user_name; ?><br>
                                         Email: <?php echo $services->user_email; ?><br>
                                         Contacts: <?php echo $services->user_mobile; ?><br>
@@ -134,6 +125,11 @@ require_once('../partials/head.php');
                                         Start Date & Time: <?php echo date('d M Y', strtotime($services->booking_requested_start_date)) . ' <br> ' . date('g:ia', strtotime($services->booking_requested_start_time)); ?><br>
                                         End Date & Time: <?php echo date('d M Y', strtotime($services->booking_requested_end_date)) . '<br> ' . date('g:ia', strtotime($services->booking_requested_end_time)); ?> <br>
                                         REF#: <?php echo $services->booking_ref; ?>
+                                    </td>
+                                    <td>
+                                        Date: <?php echo date('d M Y', strtotime($services->payment_date)); ?> <br>
+                                        Amount: Ksh <?php echo number_format($services->payment_amount, 2); ?> <br>
+                                        Mode: <?php echo $services->payment_mode; ?>
                                     </td>
                                 </tr>
                             <?php } ?>
