@@ -19,7 +19,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="service_types">Service Types
+                <a class="nav-link" href="service_types">Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="services_host">Host Services
                 </a>
             </li>
             <li class="nav-item">
