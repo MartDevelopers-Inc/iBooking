@@ -173,19 +173,19 @@ require_once('../partials/head.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" name="host_service_location" class="form-control floating-input">
+                                        <input type="text" name="host_service_location" required class="form-control floating-input">
                                         <label class="floating-label">Location</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" name="host_service_cost_description" class="form-control floating-input">
+                                        <input type="text" name="host_service_cost_description" required class="form-control floating-input">
                                         <label class="floating-label">Cost Description</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <textarea type="text" name="host_service_description" class="form-control floating-input"></textarea>
+                                        <textarea type="text" name="host_service_description" required class="form-control floating-input"></textarea>
                                         <label class="floating-label">Service Description</label>
                                     </div>
                                 </div>
