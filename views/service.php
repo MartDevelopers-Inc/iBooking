@@ -79,7 +79,7 @@ if (isset($_POST['update_service'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $_SESSION['success'] = "$service_name, Updated";
+        $_SESSION['success'] = "Service Updated";
         header('Location: service_types');
         exit;
     } else {
