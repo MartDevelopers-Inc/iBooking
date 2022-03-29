@@ -280,6 +280,9 @@ require_once('../partials/head.php');
                                         </div>
                                     </div>
                                     <div class="card-footer text-right mb-3 sm">
+                                        <a href="bookings_add?service=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-primary">
+                                            Book
+                                        </a>
                                         <a href="service_host_file?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-primary">
                                             Add File
                                         </a>

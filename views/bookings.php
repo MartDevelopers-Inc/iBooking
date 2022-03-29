@@ -60,8 +60,6 @@ require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 admin_check_login();
 
-/* Add Booking */
-
 /* Delete Booking */
 if (isset($_GET['delete_booking'])) {
     $delete_booking = $_GET['delete_booking'];
