@@ -148,12 +148,6 @@ require_once('../partials/head.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="email" name="host_email" class="form-control floating-input">
-                                        <label class="floating-label">Email Address</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group floating-form-group">
                                         <textarea type="text" name="service_description" class="form-control floating-input"></textarea>
                                         <label class="floating-label">Service Description</label>
                                     </div>
@@ -214,7 +208,7 @@ require_once('../partials/head.php');
                                         <a href="service?view=<?php echo $services->service_id; ?>" class="badge  badge-pill badge-warning">
                                             Update
                                         </a>
-                                        <a href="hosts?delete=<?php echo $services->service_id; ?>" class="badge badge-pill badge-danger">
+                                        <a href="service_types?delete=<?php echo $services->service_id; ?>" class="badge badge-pill badge-danger">
                                             Delete
                                         </a>
                                     </div>
