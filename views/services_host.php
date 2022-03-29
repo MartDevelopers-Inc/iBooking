@@ -124,14 +124,14 @@ require_once('../partials/head.php');
         <hr>
         <div class="container mt-4 text-right">
             <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#add_modal">
-                Register Service
+                Add Host Service
             </button>
         </div>
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-sm modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Register Service</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Register Host Service</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -141,19 +141,51 @@ require_once('../partials/head.php');
                             <div class="row mt-">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" name="service_number" value="<?php echo $a . $b; ?>" class="form-control floating-input">
-                                        <label class="floating-label">Service Number</label>
+                                        <select type="text" name="host_service_service_id" class="form-control floating-input">
+                                            <?php
+                                            $ret = "SELECT * FROM service_types";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($service = $res->fetch_object()) {
+                                            ?>
+                                                <option value="<?php echo $service->service_id; ?>"><?php echo $service->service_number . ' - ' . $service->service_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <label class="floating-label">Services</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" name="service_name" class="form-control floating-input">
-                                        <label class="floating-label">Service Name</label>
+                                        <select type="text" name="host_service_host_id" class="form-control floating-input">
+                                            <?php
+                                            $ret = "SELECT * FROM host";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($host = $res->fetch_object()) {
+                                            ?>
+                                                <option value="<?php echo $host->host_id; ?>"><?php echo $host->host_name; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <label class="floating-label">Host Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <textarea type="text" name="service_description" class="form-control floating-input"></textarea>
+                                        <input type="text" name="host_service_location" class="form-control floating-input">
+                                        <label class="floating-label">Location</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="text" name="host_service_cost_description" class="form-control floating-input">
+                                        <label class="floating-label">Cost Description</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <textarea type="text" name="host_service_description" class="form-control floating-input"></textarea>
                                         <label class="floating-label">Service Description</label>
                                     </div>
                                 </div>
