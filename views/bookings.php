@@ -184,10 +184,10 @@ require_once('../partials/head.php');
                                         <a href="booking?view=<?php echo $services->booking_id; ?>" class="badge  badge-pill badge-success">
                                             View
                                         </a>
-                                        <a href="booking_update?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-warning">
+                                        <a href="booking_update?view=<?php echo $services->booking_id; ?>" class="badge  badge-pill badge-warning">
                                             Update
                                         </a>
-                                        <a href="bookings?delete_booking=<?php echo $services->host_service_id; ?>" class="badge badge-pill badge-danger">
+                                        <a href="bookings?delete_booking=<?php echo $services->booking_id; ?>" class="badge badge-pill badge-danger">
                                             Delete
                                         </a>
                                     </div>
