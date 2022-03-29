@@ -9,7 +9,9 @@
 
 <!-- Swiper slider  -->
 <script src="../public/vendor/swiper/js/swiper.min.js"></script>
-
+<script src="../public/vendor/chartjs/Chart.min.js"></script>
+<script src="../public/vendor/chartjs/utils.js"></script>
+<script src="../public/vendor/chartjs/chart-js-data.js"></script>
 <!-- Masonry js -->
 <script src="../public/vendor/masonry/masonry.pkgd.min.js"></script>
 

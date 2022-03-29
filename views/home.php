@@ -58,10 +58,12 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/checklogin.php');
 admin_check_login();
+require_once('../partials/analytics.php');
 require_once('../partials/head.php');
 ?>
 
 <body class="body-scroll d-flex flex-column h-100 menu-overlay">
+    <!-- screen loader -->
 
     <!-- screen loader -->
     <?php require_once('../partials/preloader.php'); ?>
@@ -74,222 +76,178 @@ require_once('../partials/head.php');
     <main class="flex-shrink-0">
         <!-- Fixed navbar -->
         <?php require_once('../partials/header.php'); ?>
+        <!-- page content start -->
 
-
-        <!-- Services -->
         <div class="container mt-4">
-            <div class="card border border-success">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col">
-                            <h6 class="text-dark my-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
-                                </svg>
-                                <span class="vm ml-2">Available Services Types</span>
-                            </h6>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <h6 class="text-dark">
+                        Administrator Dashboard
+                    </h6>
                 </div>
+            </div>
+        </div>
+        <div class="container-fluid px-0">
+            <br>
+        </div>
+        <div class="container position-relative">
+            <div class="card">
                 <div class="card-body">
-                    <div class="row px-2">
-                        <?php
-                        /* Load Posted Services */
-                        $ret = "SELECT * FROM service_types
-                        LIMIT 5 ";
-                        $stmt = $mysqli->prepare($ret);
-                        $stmt->execute(); //ok
-                        $res = $stmt->get_result();
-                        while ($services = $res->fetch_object()) {
-                        ?>
-                            <div class="col-12 px-2">
-                                <a href="services_types">
-                                    <div class="card card-round border border-danger text-dark">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="card-content">
-                                                <p class="mb-3 sm">
-                                                    Number: <?php echo $services->service_number; ?> <br>
-                                                    Name: <?php echo $services->service_name; ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <br>
-                            </div>
-                        <?php } ?>
+                    <p class="small text-secondary mb-2">Revenue</p>
+                    <div class="row">
+                        <div class="col-auto">
+                            <h5>Ksh <?php echo number_format($payments, 2); ?></h5>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <hr>
-        <!-- Users -->
         <div class="container mt-4">
-            <div class="card border border-success">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col">
-                            <h6 class="text-dark my-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
-                                </svg>
-                                <span class="vm ml-2">Recently Registered Users</span>
-                            </h6>
+            <div class="row mb-3">
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 text-center">
+                    <h6 class="text-secondary mb-0">Boookings</h6>
+                    <h2 class="text-dark mb-4"><?php echo $bookings; ?></h2>
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-11 mx-auto mw-300">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-body text-center">
+                                            <h6 class="text-secondary mb-0">Hosts</h6>
+                                            <h4 class="text-dark"><?php echo $hosts; ?></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-body text-center">
+                                            <h6 class="text-secondary mb-0">Users</h6>
+                                            <h4 class="text-dark"><?php echo $users; ?></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card mb-4">
+                                        <div class="card-body text-center">
+                                            <h6 class="text-secondary mb-0">Services</h6>
+                                            <h4 class="text-dark"><?php echo $service; ?></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="row px-2">
-                        <?php
-                        $ret = "SELECT * FROM user";
-                        $stmt = $mysqli->prepare($ret);
-                        $stmt->execute(); //ok
-                        $res = $stmt->get_result();
-                        while ($users = $res->fetch_object()) {
-                        ?>
-                            <div class="col-12 px-2">
-                                <a href="users">
-                                    <div class="card card-round border border-danger text-dark">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="card-content">
-                                                <p class="mb-3 sm">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
-                                                        <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
-                                                        <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
-                                                    </svg>
-                                                    Name: <?php echo $users->user_name; ?> <br>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-paper" viewBox="0 0 16 16">
-                                                        <path d="M4 0a2 2 0 0 0-2 2v1.133l-.941.502A2 2 0 0 0 0 5.4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.4a2 2 0 0 0-1.059-1.765L14 3.133V2a2 2 0 0 0-2-2H4Zm10 4.267.47.25A1 1 0 0 1 15 5.4v.817l-1 .6v-2.55Zm-1 3.15-3.75 2.25L8 8.917l-1.25.75L3 7.417V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v5.417Zm-11-.6-1-.6V5.4a1 1 0 0 1 .53-.882L2 4.267v2.55Zm13 .566v5.734l-4.778-2.867L15 7.383Zm-.035 6.88A1 1 0 0 1 14 15H2a1 1 0 0 1-.965-.738L8 10.083l6.965 4.18ZM1 13.116V7.383l4.778 2.867L1 13.117Z" />
-                                                    </svg>
-                                                    Email: <?php echo $users->user_email; ?> <br>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
-                                                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-                                                    </svg>
-                                                    Mobile: <?php echo $users->user_mobile; ?>
+                <div class="col-12 col-md-6"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h6 class="text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16 vm mr-2" viewBox="0 0 512 512">
+                    <title>ionicons-v5-i</title>
+                    <path d="M80,212V448a16,16,0,0,0,16,16h96V328a24,24,0,0,1,24-24h80a24,24,0,0,1,24,24V464h96a16,16,0,0,0,16-16V212" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                    <path d="M480,256,266.89,52c-5-5.28-16.69-5.34-21.78,0L32,256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                    <polyline points="400 179 400 64 352 64 352 133" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline>
+                </svg>
+                Top Services
+            </h6>
+        </div>
+
+        <div class="container-fluid px-0 mt-3 mb-4">
+            <!-- Swiper -->
+            <div class="swiper-container swiper-products">
+                <div class="swiper-wrapper">
+                    <?php
+                    $ret = "SELECT * FROM host_service hs
+                        INNER JOIN service_types st ON st.service_id = hs.host_service_service_id
+                        INNER JOIN host h ON h.host_id = hs.host_service_host_id";
+                    $stmt = $mysqli->prepare($ret);
+                    $stmt->execute(); //ok
+                    $res = $stmt->get_result();
+                    while ($services = $res->fetch_object()) {
+                    ?>
+                        <div class="swiper-slide">
+                            <div class="card product-card-large">
+                                <div class="card-body p-0">
+                                    <div class="product-image-large">
+                                        <div class="background">
+                                            <?php
+                                            /* Load Images */
+                                            $sql = "SELECT * FROM host_service_files 
+                                            WHERE file_host_service_id = '$services->host_service_id'
+                                            GROUP BY file_host_service_id ";
+                                            $stmt = $mysqli->prepare($sql);
+                                            $stmt->execute(); //ok
+                                            $imag = $stmt->get_result();
+                                            while ($services_images = $imag->fetch_object()) {
+                                            ?>
+                                                <img src="../public/services/<?php echo $services_images->file_data; ?> " alt="">
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p><?php echo $services->service_number; ?></p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <p class="small text-secondary">
+                                                <svg xmlns='http://www.w3.org/2000/svg' class="icon-size-16" viewBox='0 0 512 512'>
+                                                    <title>ionicons-v5-l</title>
+                                                    <rect x='32' y='80' width='448' height='256' rx='16' ry='16' transform='translate(512 416) rotate(180)' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px' />
+                                                    <line x1='64' y1='384' x2='448' y2='384' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                    <line x1='96' y1='432' x2='416' y2='432' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                    <circle cx='256' cy='208' r='80' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                    <path d='M480,160a80,80,0,0,1-80-80' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                    <path d='M32,160a80,80,0,0,0,80-80' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                    <path d='M480,256a80,80,0,0,0-80,80' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                    <path d='M32,256a80,80,0,0,1,80,80' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
+                                                </svg>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <a href="services_host">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="small vm">
+                                                    <span class=" text-secondary">Host: <?php echo $services->host_name; ?></span>
+                                                </p>
+                                            </div>
+                                            <div class="col-auto">
+                                                <p class="small text-secondary">
+                                                    <?php echo $services->host_service_cost_description; ?> <br>
                                                 </p>
                                             </div>
                                         </div>
+                                    </a>
+                                </div>
+                                <div class="card-footer border-top border-color">
+                                    <div class="row">
+                                        <div class="col-auto ml-auto">
+                                            <p class="small text-secondary">
+                                                <span class=" text-secondary"> <?php echo $services->host_service_location; ?></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </a>
-                                <br>
+                                </div>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
 
-        <hr>
-        <!-- Hosts -->
-        <div class="container mt-4">
-            <div class="card border border-success">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col">
-                            <h6 class="text-dark my-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
-                                </svg>
-                                <span class="vm ml-2">Recently Registered Hosts</span>
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row px-2">
-                        <?php
-                        $ret = "SELECT * FROM host";
-                        $stmt = $mysqli->prepare($ret);
-                        $stmt->execute(); //ok
-                        $res = $stmt->get_result();
-                        while ($host = $res->fetch_object()) {
-                        ?>
-                            <div class="col-12 px-2">
-                                <a href="users">
-                                    <div class="card card-round border border-danger text-dark">
-                                        <div class="card-body d-flex align-items-center">
-                                            <div class="card-content">
-                                                <p class="mb-3 sm">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
-                                                        <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
-                                                        <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
-                                                    </svg>
-                                                    Name: <?php echo $host->host_name; ?> <br>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-paper" viewBox="0 0 16 16">
-                                                        <path d="M4 0a2 2 0 0 0-2 2v1.133l-.941.502A2 2 0 0 0 0 5.4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.4a2 2 0 0 0-1.059-1.765L14 3.133V2a2 2 0 0 0-2-2H4Zm10 4.267.47.25A1 1 0 0 1 15 5.4v.817l-1 .6v-2.55Zm-1 3.15-3.75 2.25L8 8.917l-1.25.75L3 7.417V2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v5.417Zm-11-.6-1-.6V5.4a1 1 0 0 1 .53-.882L2 4.267v2.55Zm13 .566v5.734l-4.778-2.867L15 7.383Zm-.035 6.88A1 1 0 0 1 14 15H2a1 1 0 0 1-.965-.738L8 10.083l6.965 4.18ZM1 13.116V7.383l4.778 2.867L1 13.117Z" />
-                                                    </svg>
-                                                    Email: <?php echo $host->host_email; ?> <br>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
-                                                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-                                                    </svg>
-                                                    Mobile: <?php echo $host->host_phone_no; ?> <br>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-                                                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                                                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                    </svg>
-                                                    Address: <?php echo $host->host_address; ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <br>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br><br><br>
     </main>
 
+    <!-- Required jquery and libraries -->
     <?php require_once('../partials/scripts.php'); ?>
-    <!-- page level custom script -->
-    <script>
-        "use strict"
-        $(window).on('load', function() {
-
-            /* range picker for filter */
-            var html5Slider = document.getElementById('rangeslider');
-            noUiSlider.create(html5Slider, {
-                start: [0, 100],
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 500
-                }
-            });
-
-            var inputNumber = document.getElementById('input-number');
-            var select = document.getElementById('input-select');
-
-            html5Slider.noUiSlider.on('update', function(values, handle) {
-                var value = values[handle];
-
-                if (handle) {
-                    inputNumber.value = value;
-                } else {
-                    select.value = Math.round(value);
-                }
-            });
-            select.addEventListener('change', function() {
-                html5Slider.noUiSlider.set([this.value, null]);
-            });
-            inputNumber.addEventListener('change', function() {
-                html5Slider.noUiSlider.set([null, this.value]);
-            });
-
-
-            /* carousel */
-            var swiper = new Swiper('.swiper-products', {
-                slidesPerView: 'auto',
-                spaceBetween: 0,
-                pagination: 'false'
-            });
-
-        });
-    </script>
 </body>
+
 
 </html>
