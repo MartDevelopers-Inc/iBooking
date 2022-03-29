@@ -84,7 +84,9 @@ if (isset($_POST['add_file'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Host Service File Added";
+        $_SESSION['success'] = "Host Service File Added";
+        header('Location: services_host');
+        exit;
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -141,7 +143,7 @@ require_once('../partials/head.php');
                                     <div class="col-12 col-md-6">
                                         <div class="form-group floating-form-group">
                                             <select type="text" name="file_type" class="form-control floating-input">
-                                                <option>Images</option>
+                                                <option>Image</option>
                                                 <option>Video</option>
                                             </select>
                                             <label class="floating-label">File Type</label>
@@ -149,7 +151,7 @@ require_once('../partials/head.php');
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group floating-form-group">
-                                            <input type="file" name="file_data" class="form-control floating-input">
+                                            <input type="file" accept=".png, .jpeg, .jpg, .mov, .mp4, .wmv, .mkv" name="file_data" class="form-control floating-input">
                                             <label class="floating-label">Host Service Files</label>
                                         </div>
                                     </div>

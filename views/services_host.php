@@ -224,6 +224,26 @@ require_once('../partials/head.php');
                             <div class="col-12 px-2">
                                 <div class="card card-round border border-success text-dark">
                                     <div class="card-body d-flex align-items-center">
+                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <?php
+                                                /* Load Images */
+                                                $sql = "SELECT * FROM host_service_files 
+                                                WHERE file_host_service_id = '$services->host_service_id'
+                                                GROUP BY file_host_service_id ";
+                                                $stmt = $mysqli->prepare($sql);
+                                                $stmt->execute(); //ok
+                                                $imag = $stmt->get_result();
+                                                while ($services_images = $imag->fetch_object()) {
+                                                ?>
+                                                    <div class="carousel-item active">
+                                                        <img src="../public/services/<?php echo $services_images->file_data; ?> " class="d-block w-100" alt="">
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
                                         <div class="card-content">
                                             <p class="mb-3 sm">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
