@@ -92,7 +92,53 @@ require_once('../partials/head.php');
                     </div>
                 </div>
                 <div class="card-body">
-
+                    <table id="report" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Service Details</th>
+                                <th>Host Details</th>
+                                <th>User Details</th>
+                                <th>Bookings Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $ret = "SELECT * FROM  booking b
+                            INNER JOIN host_service hs ON b.booking_host_service_id = hs.host_service_id
+                            INNER JOIN service_types st ON st.service_id = hs.host_service_service_id
+                            INNER JOIN host h ON h.host_id = hs.host_service_host_id
+                            INNER JOIN user u ON u.user_id = b.booking_user_id";
+                            $stmt = $mysqli->prepare($ret);
+                            $stmt->execute(); //ok
+                            $res = $stmt->get_result();
+                            while ($services = $res->fetch_object()) {
+                            ?>
+                                <tr>
+                                    <td>
+                                        <br>#: <?php echo $services->service_number; ?> <br>
+                                        Name : <?php echo $services->service_name; ?> <br>
+                                    </td>
+                                    <td>
+                                        Name:<?php echo $services->host_name; ?><br>
+                                        Email: <?php echo $services->host_email; ?><br>
+                                        Contacts: <?php echo $services->host_phone_no; ?><br>
+                                    </td>
+                                    <td>
+                                        Name:<?php echo $services->user_name; ?><br>
+                                        Email: <?php echo $services->user_email; ?><br>
+                                        Contacts: <?php echo $services->user_mobile; ?><br>
+                                    </td>
+                                    <td>
+                                        Status: <?php echo $services->booking_status; ?><br>
+                                        Date : <?php echo date('d M Y', strtotime($services->booking_date)) . ' <br> ' . date('g:ia', strtotime($services->booking_time)); ?><br>
+                                        Start Date & Time: <?php echo date('d M Y', strtotime($services->booking_requested_start_date)) . ' <br> ' . date('g:ia', strtotime($services->booking_requested_start_time)); ?><br>
+                                        End Date & Time: <?php echo date('d M Y', strtotime($services->booking_requested_end_date)) . '<br> ' . date('g:ia', strtotime($services->booking_requested_end_time)); ?> <br>
+                                        REF#: <?php echo $services->booking_ref; ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
