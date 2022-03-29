@@ -28,6 +28,10 @@
         });
     });
 </script>
+<script>
+    /* Init Carousels */
+    $('.carousel').carousel()
+</script>
 <script src="../public/vendor/iziToast/iziToast.min.js"></script>
 <!-- Initialize Alerts -->
 <?php if (isset($success)) { ?>
