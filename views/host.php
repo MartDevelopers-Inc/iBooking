@@ -71,11 +71,12 @@ if (isset($_POST['update_host'])) {
     $sql = "UPDATE host SET host_name =?, host_email =?, host_phone_no =?, host_address =? WHERE host_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
+        'sssss',
         $host_name,
         $host_email,
         $host_phone_no,
-        $host_address
+        $host_address,
+        $host_id
     );
     $prepare->execute();
     if ($prepare) {
