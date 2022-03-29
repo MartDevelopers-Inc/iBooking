@@ -100,7 +100,9 @@ if (isset($_POST['add_booking'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "Booking Confirmed, Proceed To Pay";
+        $_SESSION['success'] = "Booking Added";
+        header('Location: bookings');
+        exit;
     } else {
         $err = "Failed!, Please Try Again";
     }

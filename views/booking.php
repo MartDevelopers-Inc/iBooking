@@ -60,7 +60,7 @@ require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
 admin_check_login();
 
-/* Delete Booking */
+/* Update Status */
 if (isset($_GET['delete_booking'])) {
     $delete_booking = $_GET['delete_booking'];
 
@@ -93,19 +93,13 @@ require_once('../partials/head.php');
         <?php require_once('../partials/header.php'); ?>
         <br><br>
         <hr>
-        <div class="container mt-4 text-right">
-            <a href="services_host" class="btn btn-primary m-2">
-                Add Booking
-            </a>
-        </div>
-
         <div class="container mt-4">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col">
                             <h6 class="text-dark my-1">
-                                <span class="text-center vm ml-2">Services Bookings</span>
+                                <span class="text-center vm ml-2">Services Booking Details</span>
                             </h6>
                         </div>
                     </div>
@@ -113,11 +107,13 @@ require_once('../partials/head.php');
                 <div class="card-body">
                     <div class="row px-2">
                         <?php
+                        $view  = $_GET['view'];
                         $ret = "SELECT * FROM  booking b
                         INNER JOIN host_service hs ON b.booking_host_service_id = hs.host_service_id
                         INNER JOIN service_types st ON st.service_id = hs.host_service_service_id
                         INNER JOIN host h ON h.host_id = hs.host_service_host_id
-                        INNER JOIN user u ON u.user_id = b.booking_user_id";
+                        INNER JOIN user u ON u.user_id = b.booking_user_id
+                        WHERE b.booking_id ='$view'";
                         $stmt = $mysqli->prepare($ret);
                         $stmt->execute(); //ok
                         $res = $stmt->get_result();
@@ -171,28 +167,12 @@ require_once('../partials/head.php');
                                                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z" />
                                                 </svg>
                                                 End Date & Time: <?php echo date('d M Y', strtotime($services->booking_requested_end_date)) . ' ' . date('g:ia', strtotime($services->booking_requested_end_time)); ?> <br>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
-                                                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
-                                                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
-                                                </svg>
-                                                Status: <?php echo $services->booking_status; ?> <br>
                                             </p>
                                             <hr>
                                             <p class="">
                                                 <?php echo $services->booking_description; ?>
                                             </p>
                                         </div>
-                                    </div>
-                                    <div class="card-footer text-right mb-3 sm">
-                                        <a href="booking?view=<?php echo $services->booking_id; ?>" class="badge  badge-pill badge-warning">
-                                            View
-                                        </a>
-                                        <a href="service_host?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-warning">
-                                            Update
-                                        </a>
-                                        <a href="services_host?delete=<?php echo $services->host_service_id; ?>" class="badge badge-pill badge-danger">
-                                            Delete
-                                        </a>
                                     </div>
                                 </div>
                                 <br>
