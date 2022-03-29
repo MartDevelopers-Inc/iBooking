@@ -63,13 +63,21 @@ admin_check_login();
 /* Update Status */
 if (isset($_GET['update_status'])) {
     $status = $_GET['status'];
+    $update_status = $_GET['update_status'];
 
     /* Persist */
-    $sql = "UPDATE  booking  SET booking_status = '$status' WHERE booking_id = '$update_status'";
+    $sql = "UPDATE  booking  SET booking_status =? WHERE booking_id = ?";
     $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ss',
+        $status,
+        $update_status
+    );
     $prepare->execute();
     if ($prepare) {
-        $success = "Booking Status Updated";
+        $_SESSION['success'] = "Booking Status Updated";
+        header("Location: booking?view=$update_status");
+        exit;
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -165,6 +173,11 @@ require_once('../partials/head.php');
                                                     <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z" />
                                                 </svg>
                                                 End Date & Time: <?php echo date('d M Y', strtotime($services->booking_requested_end_date)) . ' ' . date('g:ia', strtotime($services->booking_requested_end_time)); ?> <br>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                                                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+                                                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+                                                </svg>
+                                                Status: <?php echo $services->booking_status; ?> <br>
                                             </p>
                                             <p class="">
                                                 <?php echo $services->booking_description; ?>
@@ -222,11 +235,11 @@ require_once('../partials/head.php');
                                         </div>
                                         <div class="card-footer text-center mb-3 sm">
                                             <?php if ($services->booking_status == 'Pending') { ?>
-                                                <a href="bookings?update_status=<?php echo $services->host_service_id; ?>&status='Approved'" class="badge badge-pill badge-success">
+                                                <a href="booking?view=<?php echo $services->booking_id; ?>&update_status=<?php echo $services->booking_id; ?>&status=Approved" class="badge badge-pill badge-success">
                                                     Approve Booking
                                                 </a>
                                             <?php } else { ?>
-                                                <a href="bookings?update_status=<?php echo $services->host_service_id; ?>&status='Pending'" class="badge badge-pill badge-danger">
+                                                <a href="booking?view=<?php echo $services->booking_id; ?>&update_status=<?php echo $services->booking_id; ?>&status=Pending" class="badge badge-pill badge-danger">
                                                     Disapprove Booking
                                                 </a>
                                             <?php } ?>
