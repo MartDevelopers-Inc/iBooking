@@ -241,8 +241,7 @@ require_once('../partials/head.php');
                 </div>
             </div>
         </div>
-
-
+        <br><br><br>
     </main>
 
     <?php require_once('../partials/scripts.php'); ?>
