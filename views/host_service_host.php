@@ -58,7 +58,7 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-admin_check_login();
+host_check_login();
 
 /* Update Service */
 if (isset($_POST['update_service'])) {
