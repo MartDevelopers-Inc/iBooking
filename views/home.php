@@ -108,7 +108,7 @@ require_once('../partials/head.php');
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
-                    <h6 class="text-secondary mb-0">Boookings</h6>
+                    <h6 class="text-secondary mb-0">Bookings</h6>
                     <h2 class="text-dark mb-4"><?php echo $bookings; ?></h2>
                     <div class="row mt-3">
                         <div class="col-12 col-md-11 mx-auto mw-300">

@@ -59,7 +59,7 @@ $host_id = $_SESSION['login_host_id'];
 
 /* My  Income */
 $query = "SELECT SUM(payment_amount)  FROM payment p
-INNER JOIN booking b ON b.boking_id = p.payment_booking_id
+INNER JOIN booking b ON b.booking_id = p.payment_booking_id
 INNER JOIN host_service hs ON hs.host_service_id = b.booking_host_service_id
 WHERE hs.host_service_host_id = '$host_id'";
 $stmt = $mysqli->prepare($query);

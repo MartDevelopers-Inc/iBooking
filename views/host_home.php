@@ -104,8 +104,6 @@ require_once('../partials/head.php');
         </div>
 
         <div class="container mt-4">
-            <div class="row mb-3">
-            </div>
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
                     <div class="row mt-3">
@@ -114,7 +112,7 @@ require_once('../partials/head.php');
                                 <div class="col">
                                     <div class="card mb-6">
                                         <div class="card-body text-center">
-                                            <h6 class="text-secondary mb-0">Booked Services</h6>
+                                            <h6 class="text-secondary mb-0">Bookings</h6>
                                             <h4 class="text-dark"><?php echo $bookings; ?></h4>
                                         </div>
                                     </div>
@@ -122,7 +120,7 @@ require_once('../partials/head.php');
                                 <div class="col">
                                     <div class="card mb-6">
                                         <div class="card-body text-center">
-                                            <h6 class="text-secondary mb-0">My Services</h6>
+                                            <h6 class="text-secondary mb-0">Services</h6>
                                             <h4 class="text-dark"><?php echo $service; ?></h4>
                                         </div>
                                     </div>
@@ -134,7 +132,7 @@ require_once('../partials/head.php');
                 <div class="col-12 col-md-6"></div>
             </div>
         </div>
-
+        <br><br>
         <div class="container">
             <h6 class="text-dark">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-16 vm mr-2" viewBox="0 0 512 512">
@@ -152,7 +150,7 @@ require_once('../partials/head.php');
             <div class="swiper-container swiper-products">
                 <div class="swiper-wrapper">
                     <?php
-                    $host_id = $_SESSION['host_id'];
+                    $host_id = $_SESSION['login_host_id'];
                     $ret = "SELECT * FROM host_service hs
                     INNER JOIN service_types st ON st.service_id = hs.host_service_service_id
                     INNER JOIN host h ON h.host_id = hs.host_service_host_id
