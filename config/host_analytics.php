@@ -55,41 +55,33 @@
  * TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY YOU, IF ANY.
  */
 
-/* Income */
-$query = "SELECT SUM(payment_amount)  FROM payment";
+$host_id = $_SESSION['login_host_id'];
+
+/* My  Income */
+$query = "SELECT SUM(payment_amount)  FROM payment p
+INNER JOIN booking b ON b.boking_id = p.payment_booking_id
+INNER JOIN host_service hs ON hs.host_service_id = b.booking_host_service_id
+WHERE hs.host_service_host_id = '$host_id'";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($payments);
 $stmt->fetch();
 $stmt->close();
 
-/* Bookings */
-$query = "SELECT COUNT(*)  FROM booking";
+/* My Services Bookings */
+$query = "SELECT COUNT(*)  FROM booking b 
+INNER JOIN host_service hs ON hs.host_service_id = b.booking_host_service_id
+WHERE hs.host_service_host_id = '$host_id'";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($bookings);
 $stmt->fetch();
 $stmt->close();
 
-/* Users */
-$query = "SELECT COUNT(*)  FROM user";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($users);
-$stmt->fetch();
-$stmt->close();
 
-
-/* Hosts */
-$query = "SELECT COUNT(*)  FROM host";
-$stmt = $mysqli->prepare($query);
-$stmt->execute();
-$stmt->bind_result($hosts);
-$stmt->fetch();
-$stmt->close();
-
-/* Services */
-$query = "SELECT COUNT(*)  FROM host_service";
+/* My Services */
+$query = "SELECT COUNT(*)  FROM host_service
+WHERE host_service_host_id = '$host_id'";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($service);
