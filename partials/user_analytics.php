@@ -60,7 +60,7 @@ $user_id = $_SESSION['login_user_id'];
 /* My  Expenditure */
 $query = "SELECT SUM(payment_amount)  FROM payment p
 INNER JOIN booking b ON b.booking_id = p.payment_booking_id
-INNER JOIN users u ON u.user_id = b.booking_user_id
+INNER JOIN user u ON u.user_id = b.booking_user_id
 WHERE u.user_id = '$user_id'";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();

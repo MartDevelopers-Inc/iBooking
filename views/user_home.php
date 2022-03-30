@@ -58,7 +58,7 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/checklogin.php');
 user_check_login();
-require_once('../partials/host_analytics.php');
+require_once('../partials/user_analytics.php');
 require_once('../partials/head.php');
 ?>
 
