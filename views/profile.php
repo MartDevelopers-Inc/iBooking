@@ -186,7 +186,7 @@ require_once('../partials/head.php');
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="email" name="admin_email" class="form-control floating-input" value="<?php echo $user->admin_email; ?>">
+                                        <input type="text" name="admin_email" class="form-control floating-input" value="<?php echo $user->admin_email; ?>">
                                         <label class="floating-label">Email Address</label>
                                     </div>
                                 </div>
