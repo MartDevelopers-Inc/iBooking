@@ -59,7 +59,7 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-admin_check_login();
+host_check_login();
 /* Update Booking */
 if (isset($_POST['update_booking'])) {
     /* Booking Attributes */
@@ -93,7 +93,7 @@ if (isset($_POST['update_booking'])) {
     $prepare->execute();
     if ($prepare) {
         $_SESSION['success'] = "Booking Updated";
-        header('Location: bookings');
+        header('Location: host_bookings');
         exit;
     } else {
         $err = "Failed!, Please Try Again";
