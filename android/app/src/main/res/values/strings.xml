@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">iBooking</string>
+    <string name="image_chooser">Choose Image</string>
+
 </resources>
