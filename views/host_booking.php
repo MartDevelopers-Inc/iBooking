@@ -239,8 +239,8 @@ require_once('../partials/head.php');
                                                     Approve Booking
                                                 </a>
                                             <?php } else { ?>
-                                                <a href="host_booking_pay?view=<?php echo $services->booking_id; ?>&ref=<?php echo $services->booking_ref; ?>" class="badge badge-pill badge-primary">
-                                                    Pay Booking
+                                                <a href="host_payments" class="badge badge-pill badge-primary">
+                                                    Check Payment Status
                                                 </a>
                                             <?php } ?>
                                         </div>
