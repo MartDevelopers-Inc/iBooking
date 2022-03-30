@@ -60,12 +60,12 @@ session_start();
 require_once('../config/config.php');
 require_once('../config/codeGen.php');
 require_once('../config/checklogin.php');
-admin_check_login();
+user_check_login();
 /* Add Booking */
 if (isset($_POST['add_booking'])) {
     /* Booking Attributes */
     $booking_id = $sys_gen_id;
-    $booking_user_id  = $_POST['booking_user_id'];
+    $booking_user_id  = $_SESSION['login_user_id'];
     $booking_ref  = $a . $b;
     $booking_description  = $_POST['booking_description'];
     $booking_host_service_id = $_GET['service'];
@@ -100,7 +100,7 @@ if (isset($_POST['add_booking'])) {
     $prepare->execute();
     if ($prepare) {
         $_SESSION['success'] = "Booking Added";
-        header('Location: bookings');
+        header('Location: user_bookings');
         exit;
     } else {
         $err = "Failed!, Please Try Again";
@@ -145,22 +145,6 @@ require_once('../partials/head.php');
                     <div class="row px-2">
                         <form method="POST">
                             <div class="row mt-">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group floating-form-group">
-                                        <select type="text" name="booking_user_id" class="form-control floating-input">
-                                            <?php
-                                            $ret = "SELECT * FROM  user";
-                                            $stmt = $mysqli->prepare($ret);
-                                            $stmt->execute(); //ok
-                                            $res = $stmt->get_result();
-                                            while ($user = $res->fetch_object()) {
-                                            ?>
-                                                <option value="<?php echo $user->user_id; ?>"><?php echo  $user->user_name; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <label class="floating-label">User Details</label>
-                                    </div>
-                                </div>
                                 <div class="col-6 col-md-6">
                                     <div class="form-group floating-form-group">
                                         <input type="date" name="booking_date" class="form-control floating-input">
@@ -201,7 +185,6 @@ require_once('../partials/head.php');
                                     <div class="form-group floating-form-group">
                                         <select type="text" name="booking_status" class="form-control floating-input">
                                             <option>Pending</option>
-                                            <option>Approved</option>
                                         </select>
                                         <label class="floating-label">Booking Status</label>
                                     </div>
