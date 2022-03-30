@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         catch (NullPointerException e){}
 
         setContentView(R.layout.activity_main);
-        logo = (ImageView) findViewById(R.id.);
+        logo = (ImageView) findViewById(R.id.logo);
 
 
         new Handler().postDelayed(new Runnable() {
