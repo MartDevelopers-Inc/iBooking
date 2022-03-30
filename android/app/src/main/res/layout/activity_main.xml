@@ -22,17 +22,33 @@
         android:id="@+id/textView"
         android:layout_width="342dp"
         android:layout_height="109dp"
+        android:fontFamily="@font/cadillac"
+        android:text="iBooking"
         android:textAlignment="center"
-        android:textSize="35dp"
         android:textColor="#ED0BC7"
-        android:fontFamily="@font/heartwarming"
-        android:text="A Click Away \n From Your Pick"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.821" />
+
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="342dp"
+        android:layout_height="109dp"
+        android:fontFamily="@font/lous"
+        android:text="An ultimate Hotel Booking System"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.927" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
