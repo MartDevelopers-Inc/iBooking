@@ -57,23 +57,25 @@
 session_start();
 require_once('../config/config.php');
 require_once('../config/checklogin.php');
-admin_check_login();
+host_check_login();
 /* Update Personal Details */
 if (isset($_POST['update_personal_info'])) {
-    $admin_id = $_SESSION['login_admin_id'];
-    $admin_name = $_POST['admin_name'];
-    $admin_mobile = $_POST['admin_mobile'];
-    $admin_email = $_POST['admin_email'];
+    $host_id = $_SESSION['login_host_id'];
+    $host_name = $_POST['host_name'];
+    $host_phone_no = $_POST['host_phone_no'];
+    $host_email = $_POST['host_email'];
+    $host_address = $_POST['host_address'];
 
     /* Persist */
-    $sql = "UPDATE admin SET  admin_name =?, admin_mobile =?, admin_email =? WHERE admin_id =?";
+    $sql = "UPDATE host SET  host_name=?, host_phone_no =?, host_email =?, host_address =? WHERE host_id =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
-        $admin_name,
-        $admin_mobile,
-        $admin_email,
-        $admin_id
+        'sssss',
+        $host_name,
+        $host_phone_no,
+        $host_email,
+        $host_address,
+        $host_id
     );
     $prepare->execute();
     if ($prepare) {
@@ -86,13 +88,13 @@ if (isset($_POST['update_personal_info'])) {
 /* Update Login Info */
 if (isset($_POST['update_login'])) {
     $login_email = $_POST['login_email'];
-    $login_admin_id = $_SESSION['login_admin_id'];
+    $login_host_id = $_SESSION['login_host_id'];
     $old_password = sha1(md5($_POST['old_password']));
     $new_password = sha1(md5($_POST['new_password']));
     $confirm_password = sha1(md5($_POST['confirm_password']));
 
     /* Check If Old Passwords Match */
-    $sql = "SELECT * FROM login WHERE login_admin_id = '$login_admin_id'";
+    $sql = "SELECT * FROM login WHERE login_host_id = '$login_host_id'";
     $res = mysqli_query($mysqli, $sql);
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
@@ -101,9 +103,9 @@ if (isset($_POST['update_login'])) {
         } elseif ($new_password != $confirm_password) {
             $err = "Confirmation Password Does Not Match";
         } else {
-            $query = "UPDATE login SET  login_password =?, login_email =? WHERE login_admin_id =?";
+            $query = "UPDATE login SET  login_password =?, login_email =? WHERE login_host_id =?";
             $stmt = $mysqli->prepare($query);
-            $rc = $stmt->bind_param('sss', $new_password, $login_email, $login_admin_id);
+            $rc = $stmt->bind_param('sss', $new_password, $login_email, $login_host_id);
             $stmt->execute();
             if ($stmt) {
                 $success = "Authentication Details Updated";
@@ -121,10 +123,10 @@ require_once('../partials/head.php');
     <?php require_once('../partials/preloader.php'); ?>
     <!-- menu main -->
     <?php require_once('../partials/main_menu.php');
-    $user_id = $_SESSION['login_admin_id'];
+    $user_id = $_SESSION['login_host_id'];
     $ret = "SELECT * FROM login l 
-    INNER JOIN admin a ON a.admin_id = l.login_admin_id
-    WHERE a.admin_id = '$user_id'";
+    INNER JOIN host h ON h.host_id = l.login_host_id
+    WHERE h.host_id = '$user_id'";
     $stmt = $mysqli->prepare($ret);
     $stmt->execute(); //ok
     $res = $stmt->get_result();
@@ -174,20 +176,26 @@ require_once('../partials/head.php');
                             <div class="row mt-">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" name="admin_name" class="form-control floating-input" value="<?php echo $user->admin_name; ?>">
+                                        <input type="text" name="host_name" class="form-control floating-input" value="<?php echo $user->host_name; ?>">
                                         <label class="floating-label">Full Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="text" name="admin_mobile" class="form-control floating-input" value="<?php echo $user->admin_mobile; ?>">
+                                        <input type="text" name="host_phone_no" class="form-control floating-input" value="<?php echo $user->host_phone_no; ?>">
                                         <label class="floating-label">Contacts</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
-                                        <input type="email" name="admin_email" class="form-control floating-input" value="<?php echo $user->admin_email; ?>">
+                                        <input type="email" name="host_email" class="form-control floating-input" value="<?php echo $user->host_email; ?>">
                                         <label class="floating-label">Email Address</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group floating-form-group">
+                                        <input type="email" name="host_address" class="form-control floating-input" value="<?php echo $user->host_address; ?>">
+                                        <label class="floating-label">Address</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 text-right">
