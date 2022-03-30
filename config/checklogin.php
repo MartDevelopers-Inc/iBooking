@@ -79,3 +79,16 @@ function host_check_login()
 		header("Location: http://$host$uri/$extra");
 	}
 }
+
+function user_check_login()
+{
+	if ((strlen($_SESSION['login_user_id']) == 0) || (strlen($_SESSION['login_rank']) == 0)) {
+		$host = $_SERVER['HTTP_HOST'];
+		$uri  = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+		$extra = "user_login";
+		$_SESSION["login_user_id"] = "";
+		$_SESSION["login_rank"] = "";
+		//$_SESSION["name"] = "";
+		header("Location: http://$host$uri/$extra");
+	}
+}
