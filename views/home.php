@@ -115,7 +115,7 @@ require_once('../partials/head.php');
                             <div class="row">
                                 <div class="col">
                                     <a href="bookings">
-                                        <div class="card mb-4">
+                                        <div class="card mb-6">
                                             <div class="card-body text-center">
                                                 <h6 class="text-secondary mb-0">Bookings</h6>
                                                 <h4 class="text-dark"><?php echo $bookings; ?></h4>
@@ -123,7 +123,7 @@ require_once('../partials/head.php');
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <a href="hosts">
                                         <div class="card mb-4">
                                             <div class="card-body text-center">
@@ -133,7 +133,7 @@ require_once('../partials/head.php');
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col">
+                                <div class="col-6">
                                     <a href="users">
                                         <div class="card mb-4">
                                             <div class="card-body text-center">
@@ -143,16 +143,17 @@ require_once('../partials/head.php');
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col">
-                                    <a href="service_types">
+                                <div class="col-6">
+                                    <a href="services_host">
                                         <div class="card mb-4">
                                             <div class="card-body text-center">
-                                                <h6 class="text-secondary mb-0">Services</h6>
+                                                <h6 class="text-secondary mb-0">Posted Services</h6>
                                                 <h4 class="text-dark"><?php echo $service; ?></h4>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
