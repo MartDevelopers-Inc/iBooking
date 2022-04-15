@@ -219,14 +219,17 @@ require_once('../partials/head.php');
                                         $imag = $stmt->get_result();
                                         while ($services_images = $imag->fetch_object()) {
                                         ?>
-                                            <div class="carousel-item active">
-                                                <img src="../public/services/<?php echo $services_images->file_data; ?> " class="d-block w-100" alt="">
-                                            </div>
+                                            <img src="../public/services/<?php echo $services_images->file_data; ?> " class="img-thumbnail img-fluid d-block w-100 " alt="">
                                         <?php } ?>
                                     </div>
                                     <div class="card-body">
                                         <div class="card-content">
                                             <p class="mb-3 sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                                                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+                                                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+                                                </svg>
+                                                Category : <?php echo $services->service_name; ?> <br>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
                                                     <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
                                                     <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
