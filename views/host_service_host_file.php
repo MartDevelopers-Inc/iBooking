@@ -139,8 +139,8 @@ require_once('../partials/head.php');
                     <div class="card-body">
                         <div class="row px-2">
                             <form method="POST" enctype="multipart/form-data">
-                                <div class="row mt-">
-                                    <div class="col-12 col-md-6">
+                                <div class="row">
+                                    <div class="col-12">
                                         <div class="form-group floating-form-group">
                                             <select type="text" name="file_type" class="form-control floating-input">
                                                 <option>Image</option>
@@ -149,7 +149,7 @@ require_once('../partials/head.php');
                                             <label class="floating-label">File Type</label>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12">
                                         <div class="form-group floating-form-group">
                                             <input type="file" accept=".png, .jpeg, .jpg, .mov, .mp4, .wmv, .mkv" name="file_data" class="form-control floating-input">
                                             <label class="floating-label">Host Service Files</label>
