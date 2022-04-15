@@ -101,7 +101,7 @@ require_once('../partials/head.php');
                         ?>
 
                             <div class="col-4 px-2">
-                                <a href="user_posted_services_category?view=<?php echo $services->sevice_id; ?>&name=<?php echo $services->service_name; ?>">
+                                <a href="user_posted_services_category?view=<?php echo $services->service_id; ?>&name=<?php echo $services->service_name; ?>">
                                     <div class="card card-round border border-success text-dark">
                                         <div class="card-body d-flex align-items-center">
 

@@ -83,7 +83,7 @@ require_once('../partials/head.php');
                     <div class="row">
                         <div class="col">
                             <h6 class="text-dark my-1">
-                                <span class="text-center vm ml-2">Registered Host Services Under <?php echo $_GET['name']; ?></span>
+                                <span class="text-center vm ml-2"><?php echo $_GET['name']; ?> available for booking</span>
                             </h6>
                         </div>
                     </div>
