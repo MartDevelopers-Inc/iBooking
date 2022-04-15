@@ -134,7 +134,8 @@ require_once('../partials/head.php');
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="user_sign_up" class="link">Create User Account</a>
+                    <a href="user_sign_up" class="link">Create User Account</a><br>
+                    <a href="landing" class="link">Home</a>
                 </div>
             </div>
         </div>

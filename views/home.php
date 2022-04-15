@@ -93,12 +93,14 @@ require_once('../partials/head.php');
         <div class="container position-relative">
             <div class="card">
                 <div class="card-body">
-                    <p class="small text-secondary mb-2">Revenue</p>
-                    <div class="row">
-                        <div class="col-auto">
-                            <h5>Ksh <?php echo number_format($payments, 2); ?></h5>
+                    <a href="payments">
+                        <p class="small text-secondary mb-2">Revenue</p>
+                        <div class="row">
+                            <div class="col-auto text-dark">
+                                <h5>Ksh <?php echo number_format($payments, 2); ?></h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -107,35 +109,49 @@ require_once('../partials/head.php');
             <div class="row mb-3">
             </div>
             <div class="row">
-                <div class="col-12 col-md-6 text-center">
-                    <h6 class="text-secondary mb-0">Bookings</h6>
-                    <h2 class="text-dark mb-4"><?php echo $bookings; ?></h2>
+                <div class="col-12  text-center">
                     <div class="row mt-3">
-                        <div class="col-12 col-md-11 mx-auto mw-300">
+                        <div class="col-12 mx-auto mw-300">
                             <div class="row">
                                 <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-body text-center">
-                                            <h6 class="text-secondary mb-0">Hosts</h6>
-                                            <h4 class="text-dark"><?php echo $hosts; ?></h4>
+                                    <a href="bookings">
+                                        <div class="card mb-4">
+                                            <div class="card-body text-center">
+                                                <h6 class="text-secondary mb-0">Bookings</h6>
+                                                <h4 class="text-dark"><?php echo $bookings; ?></h4>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-body text-center">
-                                            <h6 class="text-secondary mb-0">Users</h6>
-                                            <h4 class="text-dark"><?php echo $users; ?></h4>
+                                    <a href="hosts">
+                                        <div class="card mb-4">
+                                            <div class="card-body text-center">
+                                                <h6 class="text-secondary mb-0">Hosts</h6>
+                                                <h4 class="text-dark"><?php echo $hosts; ?></h4>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-body text-center">
-                                            <h6 class="text-secondary mb-0">Services</h6>
-                                            <h4 class="text-dark"><?php echo $service; ?></h4>
+                                    <a href="users">
+                                        <div class="card mb-4">
+                                            <div class="card-body text-center">
+                                                <h6 class="text-secondary mb-0">Users</h6>
+                                                <h4 class="text-dark"><?php echo $users; ?></h4>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="service_types">
+                                        <div class="card mb-4">
+                                            <div class="card-body text-center">
+                                                <h6 class="text-secondary mb-0">Services</h6>
+                                                <h4 class="text-dark"><?php echo $service; ?></h4>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +169,7 @@ require_once('../partials/head.php');
                     <path d="M480,256,266.89,52c-5-5.28-16.69-5.34-21.78,0L32,256" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
                     <polyline points="400 179 400 64 352 64 352 133" style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></polyline>
                 </svg>
-                Top Services
+                Top Booked Services
             </h6>
         </div>
 

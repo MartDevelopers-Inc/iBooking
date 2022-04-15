@@ -92,7 +92,6 @@ require_once('../partials/head.php');
             </div>
             <h4 class="mb-4">iBooking <br> <small>The Ultimate Hotel Booking System</small></h4>
         </div>
-        <br><br>
         <div class="container">
             <div class="login-box">
                 <form method="POST">
@@ -104,7 +103,6 @@ require_once('../partials/head.php');
                     <div class="form-group my-4">
                         <a href="landing" class="link">Remember Password?</a>
                     </div>
-                    <br><br>
                     <input type="submit" name="Reset_Password" value="Reset Password" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>
