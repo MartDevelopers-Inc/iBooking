@@ -124,7 +124,7 @@ require_once('../partials/head.php');
         <hr>
         <div class="container mt-4 text-right">
             <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#add_modal">
-                Add Host Service
+                Register Service
             </button>
         </div>
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -224,24 +224,22 @@ require_once('../partials/head.php');
                             <div class="col-12 px-2">
                                 <div class="card card-round border border-success text-dark">
                                     <div class="card-body d-flex align-items-center">
-                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner">
-                                                <?php
-                                                /* Load Images */
-                                                $sql = "SELECT * FROM host_service_files 
-                                                WHERE file_host_service_id = '$services->host_service_id'
-                                                GROUP BY file_host_service_id ";
-                                                $stmt = $mysqli->prepare($sql);
-                                                $stmt->execute(); //ok
-                                                $imag = $stmt->get_result();
-                                                while ($services_images = $imag->fetch_object()) {
-                                                ?>
-                                                    <div class="carousel-item active">
-                                                        <img src="../public/services/<?php echo $services_images->file_data; ?> " class="d-block w-100" alt="">
-                                                    </div>
-                                                <?php } ?>
+
+                                        <?php
+                                        /* Load Images */
+                                        $sql = "SELECT * FROM host_service_files 
+                                        WHERE file_host_service_id = '$services->host_service_id'
+                                        GROUP BY file_host_service_id ";
+                                        $stmt = $mysqli->prepare($sql);
+                                        $stmt->execute(); //ok
+                                        $imag = $stmt->get_result();
+                                        while ($services_images = $imag->fetch_object()) {
+                                        ?>
+                                            <div class="carousel-item active">
+                                                <img src="../public/services/<?php echo $services_images->file_data; ?> " class="img-thumbnail img-fluid d-block w-100" alt="">
                                             </div>
-                                        </div>
+                                        <?php } ?>
+
                                     </div>
                                     <div class="card-body">
                                         <div class="card-content">
@@ -284,7 +282,7 @@ require_once('../partials/head.php');
                                             Book
                                         </a>
                                         <a href="service_host_file?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-primary">
-                                            Add File
+                                            Upload Images
                                         </a>
                                         <a href="service_host?view=<?php echo $services->host_service_id; ?>" class="badge  badge-pill badge-warning">
                                             Update
