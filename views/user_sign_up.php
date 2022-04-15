@@ -69,39 +69,44 @@ if (isset($_POST['sign_up'])) {
     $login_rank = 'User';
     $login_password = sha1(md5($_POST['login_password']));
 
-    /* Persist */
-
-    $sql = "INSERT INTO user(user_id, user_name, user_email, user_mobile) VALUES(?,?,?,?)";
-    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_user_id) VALUES(?,?,?,?,?)";
-
-    $prepare = $mysqli->prepare($sql);
-    $auth_prepare  = $mysqli->prepare($auth);
-
-    $bind = $prepare->bind_param(
-        'ssss',
-        $user_id,
-        $user_name,
-        $user_email,
-        $user_mobile
-    );
-    $auth_bind = $auth_prepare->bind_param(
-        'sssss',
-        $login_id,
-        $user_email,
-        $login_password,
-        $login_rank,
-        $user_id
-    );
-    $prepare->execute();
-    $auth_prepare->execute();
-
-    if ($prepare && $auth_prepare) {
-        /* Pass This Alert Via Session */
-        $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
-        header('Location: user_login');
-        exit;
+    /* Check If This Guy Exists */
+    $sql = "SELECT * FROM user  WHERE user_email = '$user_email'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $err = "A User with This Email Address Already Exists";
     } else {
-        $err = "Failed!, Please Try Again";
+        $sql = "INSERT INTO user(user_id, user_name, user_email, user_mobile) VALUES(?,?,?,?)";
+        $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_user_id) VALUES(?,?,?,?,?)";
+
+        $prepare = $mysqli->prepare($sql);
+        $auth_prepare  = $mysqli->prepare($auth);
+
+        $bind = $prepare->bind_param(
+            'ssss',
+            $user_id,
+            $user_name,
+            $user_email,
+            $user_mobile
+        );
+        $auth_bind = $auth_prepare->bind_param(
+            'sssss',
+            $login_id,
+            $user_email,
+            $login_password,
+            $login_rank,
+            $user_id
+        );
+        $prepare->execute();
+        $auth_prepare->execute();
+
+        if ($prepare && $auth_prepare) {
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
+            header('Location: user_login');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
     }
 }
 
