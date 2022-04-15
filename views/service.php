@@ -79,7 +79,7 @@ if (isset($_POST['update_service'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $_SESSION['success'] = "Service Updated";
+        $_SESSION['success'] = "Service Category Updated";
         header('Location: service_types');
         exit;
     } else {
@@ -134,19 +134,19 @@ require_once('../partials/head.php');
                                     <div class="col-12 col-md-6">
                                         <div class="form-group floating-form-group">
                                             <input type="text" name="service_number" value="<?php echo $service->service_number; ?>" class="form-control floating-input">
-                                            <label class="floating-label">Service Number</label>
+                                            <label class="floating-label">Service Category Number</label>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group floating-form-group">
                                             <input type="text" name="service_name" value="<?php echo $service->service_name; ?>" class="form-control floating-input">
-                                            <label class="floating-label">Service Name</label>
+                                            <label class="floating-label">Service Category Name</label>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group floating-form-group">
                                             <textarea type="text" rows="5" name="service_description" class="form-control floating-input"><?php echo $service->service_description; ?></textarea>
-                                            <label class="floating-label">Service Description</label>
+                                            <label class="floating-label">Service Category Description</label>
                                         </div>
                                     </div>
                                 </div>

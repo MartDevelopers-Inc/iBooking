@@ -93,7 +93,7 @@ if (isset($_GET['delete'])) {
     $prepare = $mysqli->prepare($sql);
     $prepare->execute();
     if ($prepare) {
-        $_SESSION['success'] = "Service Deleted";
+        $_SESSION['success'] = "Service Category Deleted";
         header('Location: service_types');
         exit;
     } else {
@@ -137,19 +137,19 @@ require_once('../partials/head.php');
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
                                         <input type="text" name="service_number" value="<?php echo $a . $b; ?>" class="form-control floating-input">
-                                        <label class="floating-label">Service Number</label>
+                                        <label class="floating-label">Service Category Number</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
                                         <input type="text" name="service_name" class="form-control floating-input">
-                                        <label class="floating-label">Service Name</label>
+                                        <label class="floating-label">Service Category Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group floating-form-group">
                                         <textarea type="text" name="service_description" class="form-control floating-input"></textarea>
-                                        <label class="floating-label">Service Description</label>
+                                        <label class="floating-label">Service Category Description</label>
                                     </div>
                                 </div>
                             </div>
