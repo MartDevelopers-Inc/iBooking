@@ -79,7 +79,7 @@ $stmt->close();
 
 
 /* Available Services  */
-$query = "SELECT COUNT(*)  FROM host_service";
+$query = "SELECT COUNT(*)  FROM service_types";
 $stmt = $mysqli->prepare($query);
 $stmt->execute();
 $stmt->bind_result($service);
