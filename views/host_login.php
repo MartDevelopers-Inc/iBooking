@@ -124,7 +124,6 @@ require_once('../partials/head.php');
                     <div class="form-group my-4">
                         <a href="reset_password" class="link">Forget password?</a>
                     </div>
-                    <br>
                     <input type="submit" name="login" value="Sign In" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>

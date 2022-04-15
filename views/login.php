@@ -107,7 +107,7 @@ require_once('../partials/head.php');
                     <polyline points='400 179 400 64 352 64 352 133' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
                 </svg>
             </div>
-            <h4 class="mb-4">iBooking <br> <small>The Ultimate Hotel Booking System</small></h4>
+            <h4 class="mb-4">iBooking <br> <small>Admin Login Area</small></h4>
         </div>
         <div class="container">
             <div class="login-box">
