@@ -85,7 +85,7 @@ require_once('../partials/head.php');
                     <div class="row">
                         <div class="col">
                             <h6 class="text-dark my-1">
-                                <span class="text-center vm ml-2">Select on services to view available properties for booking</span>
+                                <span class="text-center vm ml-2">Select on service category to view available properties for booking</span>
                             </h6>
                         </div>
                     </div>
@@ -99,29 +99,30 @@ require_once('../partials/head.php');
                         $res = $stmt->get_result();
                         while ($services = $res->fetch_object()) {
                         ?>
-                            <div class="col-12 px-2">
-                                <div class="card card-round border border-success text-dark">
-                                    <div class="card-body d-flex align-items-center">
-                                        <div class="card-content">
-                                            <p class="mb-3 sm">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
-                                                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
-                                                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
-                                                </svg>
-                                                Number: <?php echo $services->service_number; ?> <br>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
-                                                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
-                                                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
-                                                </svg>
-                                                Name: <?php echo $services->service_name; ?> <br>
-                                            </p>
-                                            <hr>
-                                            <p class="">
-                                                <?php echo $services->service_description; ?>
-                                            </p>
+
+                            <div class="col-4 px-2">
+                                <a href="user_posted_services_category?view=<?php echo $services->sevice_id; ?>&name=<?php echo $services->service_name; ?>">
+                                    <div class="card card-round border border-success text-dark">
+                                        <div class="card-body d-flex align-items-center">
+
+                                            <div class="card-content">
+
+                                                <p class="mb-3 sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                                                        <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+                                                        <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+                                                    </svg>
+                                                    Number: <?php echo $services->service_number; ?> <br>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                                                        <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+                                                        <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+                                                    </svg>
+                                                    Name: <?php echo $services->service_name; ?> <br>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                                 <br>
                             </div>
                         <?php } ?>
