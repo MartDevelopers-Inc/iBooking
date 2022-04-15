@@ -122,7 +122,7 @@ require_once('../partials/head.php');
                     </div>
                     <br>
                     <div class="form-group my-4">
-                        <a href="reset_password" class="link">Forget password?</a>
+                        <a href="reset_password" class="link">Forget password?</a> <br>
                     </div>
                     <br><br>
                     <input type="submit" name="login" value="Sign In" class="btn btn-block btn-info btn-lg">
@@ -135,7 +135,7 @@ require_once('../partials/head.php');
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="sign_up_step_1" class="link">Create Account</a>
+                    <a href="landing" class="link">Home</a>
                 </div>
             </div>
         </div>

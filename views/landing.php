@@ -66,7 +66,6 @@ require_once('../partials/head.php');
 
     <!-- Begin page content -->
     <main class="flex-shrink-0">
-        <br><br><br><br>
         <div class="container">
             <!-- Swiper -->
             <div class="swiper-container">
@@ -141,7 +140,7 @@ require_once('../partials/head.php');
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-        <br><br>
+    
         <footer class="footer mt-auto py-3">
             <div class="container">
                 <div class="row">
