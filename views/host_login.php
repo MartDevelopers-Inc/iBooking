@@ -107,7 +107,7 @@ require_once('../partials/head.php');
                     <polyline points='400 179 400 64 352 64 352 133' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px' />
                 </svg>
             </div>
-            <h4 class="mb-4">iBooking <br> <small>The Ultimate Hotel Booking System</small></h4>
+            <h4 class="mb-4">iBooking <br> Host Login Area </small></h4>
         </div>
         <div class="container">
             <div class="login-box">
@@ -124,7 +124,7 @@ require_once('../partials/head.php');
                     <div class="form-group my-4">
                         <a href="reset_password" class="link">Forget password?</a>
                     </div>
-                    <br><br>
+                    <br>
                     <input type="submit" name="login" value="Sign In" class="btn btn-block btn-info btn-lg">
                 </form>
             </div>
@@ -135,7 +135,8 @@ require_once('../partials/head.php');
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="sign_up_step_1" class="link">Create Account</a>
+                    <a href="host_sign_up" class="link">Create Host Account</a> <br>
+                    <a href="landing" class="link">Home</a>
                 </div>
             </div>
         </div>
