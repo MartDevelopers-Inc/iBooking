@@ -79,11 +79,11 @@ if ($login_rank == 'Administrator') {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="service_types">Services
+                    <a class="nav-link" href="service_types">Service Categories
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="services_host">Host Services
+                    <a class="nav-link" href="services_host">Services
                     </a>
                 </li>
                 <li class="nav-item">
@@ -175,7 +175,7 @@ if ($login_rank == 'Administrator') {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="user_bookings">Bookings
+                    <a class="nav-link" href="user_bookings">My Bookings
                     </a>
                 </li>
                 <li class="nav-item">
