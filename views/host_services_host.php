@@ -200,7 +200,8 @@ require_once('../partials/head.php');
                         $host_id = $_SESSION['login_host_id'];
                         $ret = "SELECT * FROM host_service hs
                         INNER JOIN service_types st ON st.service_id = hs.host_service_service_id
-                        INNER JOIN host h ON h.host_id = hs.host_service_host_id";
+                        INNER JOIN host h ON h.host_id = hs.host_service_host_id
+                        WHERE h.host_id = '$host_id'";
                         $stmt = $mysqli->prepare($ret);
                         $stmt->execute(); //ok
                         $res = $stmt->get_result();
