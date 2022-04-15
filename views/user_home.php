@@ -82,7 +82,7 @@ require_once('../partials/head.php');
             <div class="row">
                 <div class="col">
                     <h6 class="text-dark">
-                        User Dashboard
+                        User Home
                     </h6>
                 </div>
             </div>
@@ -218,6 +218,11 @@ require_once('../partials/head.php');
                                                     <?php echo $services->host_service_cost_description; ?> <br>
                                                 </p>
                                             </div>
+                                            <div class="col">
+                                                <p class="small vm">
+                                                    <span class=" text-secondary">Category: <?php echo $services->service_name; ?></span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -225,7 +230,7 @@ require_once('../partials/head.php');
                                     <div class="row">
                                         <div class="col-auto ml-auto">
                                             <p class="small text-secondary">
-                                                <span class=" text-secondary"> <?php echo $services->host_service_location; ?></span>
+                                                <span class=" text-secondary">Location: <?php echo $services->host_service_location; ?></span>
                                             </p>
                                         </div>
                                     </div>

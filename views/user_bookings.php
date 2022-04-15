@@ -94,7 +94,7 @@ require_once('../partials/head.php');
         <br><br>
         <hr>
         <div class="container mt-4 text-right">
-            <a href="user_services_host" class="btn btn-primary m-2">
+            <a href="user_services" class="btn btn-primary m-2">
                 Add Booking
             </a>
         </div>
