@@ -119,14 +119,14 @@ require_once('../partials/head.php');
         <hr>
         <div class="container mt-4 text-right">
             <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#add_modal">
-                Register Service
+                Register Service Category
             </button>
         </div>
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-sm modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Register Service</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Register Service Category</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -168,7 +168,7 @@ require_once('../partials/head.php');
                     <div class="row">
                         <div class="col">
                             <h6 class="text-dark my-1">
-                                <span class="text-center vm ml-2">Registered Services</span>
+                                <span class="text-center vm ml-2">Service Categories</span>
                             </h6>
                         </div>
                     </div>
@@ -182,7 +182,7 @@ require_once('../partials/head.php');
                         $res = $stmt->get_result();
                         while ($services = $res->fetch_object()) {
                         ?>
-                            <div class="col-12 px-2">
+                            <div class="col-6 px-2">
                                 <div class="card card-round border border-success text-dark">
                                     <div class="card-body d-flex align-items-center">
                                         <div class="card-content">
