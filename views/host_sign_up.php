@@ -70,41 +70,46 @@ if (isset($_POST['sign_up'])) {
     $login_rank = 'Host';
     $login_password = sha1(md5($_POST['login_password']));
 
-    /* Persist */
-
-    $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
-    $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
-
-    $prepare = $mysqli->prepare($sql);
-    $auth_prepare  = $mysqli->prepare($auth);
-
-    $bind = $prepare->bind_param(
-        'sssss',
-        $host_id,
-        $host_name,
-        $host_phone_no,
-        $host_email,
-        $host_address
-    );
-    $auth_bind = $auth_prepare->bind_param(
-        'sssss',
-        $login_id,
-        $host_email,
-        $login_password,
-        $login_rank,
-        $host_id
-    );
-
-    $prepare->execute();
-    $auth_prepare->execute();
-
-    if ($prepare && $auth_prepare) {
-        /* Pass This Alert Via Session */
-        $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
-        header('Location: host_login');
-        exit;
+    /* Check If This Guy Exists */
+    $sql = "SELECT * FROM  host WHERE host_email = '$host_email'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $err = "A Host with This Email Address Already Exists";
     } else {
-        $err = "Failed!, Please Try Again";
+        $sql = "INSERT INTO host(host_id, host_name, host_phone_no, host_email, host_address) VALUES(?,?,?,?,?)";
+        $auth = "INSERT INTO login(login_id, login_email, login_password, login_rank, login_host_id) VALUES(?,?,?,?,?)";
+
+        $prepare = $mysqli->prepare($sql);
+        $auth_prepare  = $mysqli->prepare($auth);
+
+        $bind = $prepare->bind_param(
+            'sssss',
+            $host_id,
+            $host_name,
+            $host_phone_no,
+            $host_email,
+            $host_address
+        );
+        $auth_bind = $auth_prepare->bind_param(
+            'sssss',
+            $login_id,
+            $host_email,
+            $login_password,
+            $login_rank,
+            $host_id
+        );
+
+        $prepare->execute();
+        $auth_prepare->execute();
+
+        if ($prepare && $auth_prepare) {
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = "Your $login_rank  Account Has Been Created, Proceed To Login";
+            header('Location: host_login');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
     }
 }
 
