@@ -170,7 +170,10 @@ if ($login_rank == 'Administrator') {
                     <a class="nav-link" href="user_profile">My Profile
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="user_services">Services
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="user_bookings">Bookings
                     </a>

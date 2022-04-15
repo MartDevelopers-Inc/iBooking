@@ -123,9 +123,9 @@ require_once('../partials/head.php');
                                 </div>
                                 <div class="col">
                                     <div class="card mb-6">
-                                        <a href="user_bookings">
+                                        <a href="user_services">
                                             <div class="card-body text-center">
-                                                <h6 class="text-secondary mb-0">Hosting Services</h6>
+                                                <h6 class="text-secondary mb-0">Services</h6>
                                                 <h4 class="text-dark"><?php echo $service; ?></h4>
                                             </div>
                                         </a>
