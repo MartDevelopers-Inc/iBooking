@@ -124,14 +124,14 @@ require_once('../partials/head.php');
         <hr>
         <div class="container mt-4 text-right">
             <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#add_modal">
-                Add Host Service
+                Register New Service
             </button>
         </div>
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-sm modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Register Host Service</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Register New Service</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -152,7 +152,7 @@ require_once('../partials/head.php');
                                                 <option value="<?php echo $service->service_id; ?>"><?php echo $service->service_number . ' - ' . $service->service_name; ?></option>
                                             <?php } ?>
                                         </select>
-                                        <label class="floating-label">Services</label>
+                                        <label class="floating-label">Services Categories</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -189,7 +189,7 @@ require_once('../partials/head.php');
                     <div class="row">
                         <div class="col">
                             <h6 class="text-dark my-1">
-                                <span class="text-center vm ml-2">Registered Host Services</span>
+                                <span class="text-center vm ml-2">Services Im Offering</span>
                             </h6>
                         </div>
                     </div>
